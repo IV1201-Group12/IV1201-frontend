@@ -1,7 +1,7 @@
-import './App.css';
+import ListOfThings from './features/things/components/ListOfThings';
 
 function App() {
-  return <h1>Hello</h1>;
+  return <ListOfThings />;
 }
 
 export default App;
