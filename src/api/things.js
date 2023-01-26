@@ -4,7 +4,7 @@ const ENDPOINT = '/things';
 
 export async function getAllThings() {
   const { data } = await axios.get(ENDPOINT);
-  console.log('dhsadas');
+  console.log('dsadsadhsadas');
   return data;
 }
 
