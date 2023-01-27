@@ -12,13 +12,24 @@ const ListOfApplications = () => {
   }
 
   return (
-    <>
-      {data.map((application, i) => (
-        <div key={application.id}>
-          {i + 1} {application.applicant_name} {application.status}
-        </div>
-      ))}
-    </>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Applicants Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((application, i) => (
+          <tr key={i}>
+            <td>{i + 1}</td>
+            <td>{application.applicant_name}</td>
+            <td>{application.status}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
