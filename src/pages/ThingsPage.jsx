@@ -1,4 +1,4 @@
-import ListOfThings from '../features/things/components/ListOfThings';
+import ListOfThings from '../components/ListOfThings';
 
 const ThingsPage = () => {
   return <ListOfThings />;
