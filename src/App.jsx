@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import ThingsPage from './pages/ThingsPage';
+import CreateAccount from './components/CreateAccount';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/things" element={<ThingsPage />} />
+        <Route path="/createAccount" element={<CreateAccount />} />
       </Routes>
     </Router>
   );
