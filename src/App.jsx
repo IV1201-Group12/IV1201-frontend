@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import ApplicationsPage from './pages/ApplicationsPage';
 import CreateAccount from './components/CreateAccount';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/applications" element={<ApplicationsPage />} />
         <Route path="/createAccount" element={<CreateAccount />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );

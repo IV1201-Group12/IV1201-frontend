@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 //import { useCreateAccount } from '../queryHooks/useCreateAccount';
-import { createNewAccount } from '../api/createAccount';
+import { signUpUserFn } from '../api/auth';
 
 export default function CreateAccount() {
   const [name, setName] = useState('');
@@ -22,7 +22,7 @@ export default function CreateAccount() {
       password,
       role_id: 2,
     };
-    const response = await createNewAccount(applicant);
+    const response = await signUpUserFn(applicant);
     setResponseStatus(response.status);
   };
 
