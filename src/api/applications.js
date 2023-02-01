@@ -1,8 +1,15 @@
-import { axios } from './axios';
+import axios from 'axios';
+import { apiConfig } from '../config/api-config';
 
-const ENDPOINT = '/applications';
+const BASE_URL = `${apiConfig.BACKEND_BASEURL}/applications`;
+
+export const applicationsApi = axios.create({
+  baseURL: BASE_URL,
+});
+
+applicationsApi.defaults.headers.common['Content-Type'] = 'application/json';
 
 export async function getAllApplications() {
-  const { data } = await axios.get(ENDPOINT);
+  const { data } = await applicationsApi.get();
   return data;
 }
