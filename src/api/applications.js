@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { apiConfig } from '../config/api-config';
 
-const BASE_URL = `${apiConfig.BACKEND_BASEURL}/applications`;
-
 export const applicationsApi = axios.create({
-  baseURL: BASE_URL,
+  baseURL: `${apiConfig.BACKEND_BASEURL}/applications`,
 });
 
 applicationsApi.defaults.headers.common['Content-Type'] = 'application/json';
