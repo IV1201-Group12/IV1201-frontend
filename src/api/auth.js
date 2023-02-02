@@ -1,12 +1,8 @@
 import axios from 'axios';
 import { apiConfig } from '../config/api-config';
 
-const BASE_URL = `${apiConfig.BACKEND_BASEURL}/auth`;
-
-console.log(BASE_URL);
-
 export const authApi = axios.create({
-  baseURL: BASE_URL,
+  baseURL: `${apiConfig.BACKEND_BASEURL}/auth`,
   withCredentials: true,
 });
 
