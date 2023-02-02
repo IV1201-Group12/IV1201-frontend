@@ -3,7 +3,6 @@ import { apiConfig } from '../config/api-config';
 
 export const authApi = axios.create({
   baseURL: `${apiConfig.BACKEND_BASEURL}/auth`,
-  withCredentials: true,
 });
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
