@@ -24,7 +24,9 @@ const ListOfApplications = () => {
         {data.map((application, i) => (
           <tr key={i}>
             <td>{i + 1}</td>
-            <td>{application.applicant}</td>
+            <td>
+              {application.applicant.firstname} {application.applicant.lastname}
+            </td>
             <td>{application.status}</td>
           </tr>
         ))}
