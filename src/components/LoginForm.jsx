@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLogin } from '../queryHooks/useLogin';
+import { useDataByKey } from '../queryHooks/useDataByKey';
 
 const LoginForm = () => {
   // const [isEnable, setEnable] = useState(true);
@@ -12,7 +13,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { isError, error, isLoading, mutate, isSuccess } = useLogin();
-
+  const name = useDataByKey(['user']);
   return (
     <div>
       <label>Username</label>
@@ -46,7 +47,7 @@ const LoginForm = () => {
         Login
       </button>
       {/* TODO */}
-      {isSuccess ? <h1>Logged in</h1> : <></>}
+      {isSuccess ? <h1>Logged in as {name}</h1> : <></>}
       {isError ? <h1>{error.message}</h1> : <></>}
       {isLoading ? <h1>Loading...</h1> : <></>}
     </div>

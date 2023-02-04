@@ -1,6 +1,7 @@
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
-export function useDataByKey(key) {
+export const useDataByKey = (key) => {
   const queryClient = useQueryClient();
+
   return queryClient.getQueryData(key);
-}
+};
