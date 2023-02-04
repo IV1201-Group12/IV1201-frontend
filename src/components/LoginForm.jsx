@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLogin } from '../queryHooks/useLogin';
 import { useDataByKey } from '../queryHooks/useDataByKey';
-
+import { testThing } from '../api/auth';
 const LoginForm = () => {
   // const [isEnable, setEnable] = useState(true);
 
@@ -9,6 +9,11 @@ const LoginForm = () => {
   //   if (username.length > 0 && password.length > 0) setEnable(false);
   //   else setEnable(true);
   // };
+
+  const clickTest = () => {
+    const data = testThing();
+    console.log(data);
+  };
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -50,6 +55,7 @@ const LoginForm = () => {
       {isSuccess ? <h1>Logged in as {name}</h1> : <></>}
       {isError ? <h1>{error.message}</h1> : <></>}
       {isLoading ? <h1>Loading...</h1> : <></>}
+      <button onClick={clickTest}>TEST</button>
     </div>
   );
 };
