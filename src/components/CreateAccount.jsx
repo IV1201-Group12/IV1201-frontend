@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 //import { useCreateAccount } from '../queryHooks/useCreateAccount';
-import { signUpUserFn } from '../api/auth';
+import { signUpUser } from '../api/auth';
 
 export default function CreateAccount() {
   const [name, setName] = useState('');
