@@ -3,10 +3,10 @@ import { apiConfig } from '../config/api-config';
 
 export const authApi = axios.create({
   baseURL: `${apiConfig.BACKEND_BASEURL}/auth`,
+  withCredentials: true,
 });
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
-authApi.defaults.withCredentials = true;
 
 export const signUpUser = async (user) => {
   const response = await authApi.post('createAccount', user);
@@ -18,10 +18,5 @@ export const loginUser = async (username, password) => {
     username,
     password,
   });
-  return response;
-};
-
-export const testThing = async () => {
-  const response = await authApi.get('/test');
   return response;
 };
