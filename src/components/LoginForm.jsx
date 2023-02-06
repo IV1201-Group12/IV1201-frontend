@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import useAuth from '../context/AuthContext';
 import { useLogin } from '../queryHooks/useLogin';
-import { useDataByKey } from '../queryHooks/useDataByKey';
+import { testEndpoint } from '../api/auth';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { isError, error, isLoading, mutate, isSuccess } = useLogin();
-  const name = useDataByKey(['user']);
+  const { user } = useAuth();
 
   return (
     <div>
@@ -39,9 +40,10 @@ const LoginForm = () => {
         Login
       </button>
       {/* TODO */}
-      {isSuccess ? <h1>Logged in as {name}</h1> : <></>}
+      <h1>Logged in as {user}</h1>
       {isError ? <h1>{error.message}</h1> : <></>}
       {isLoading ? <h1>Loading...</h1> : <></>}
+      <button onClick={testEndpoint}>Test</button>
     </div>
   );
 };
