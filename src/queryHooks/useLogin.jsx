@@ -1,12 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
-import { loginUserFn } from '../api/auth';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { loginUser } from '../api/auth';
 
-export function useLogin(username, password) {
-  return useQuery(
-    ['login', username, password],
-    () => loginUserFn({ username, password }),
-    {
-      enabled: false,
+export function useLogin() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ username, password }) => {
+      const result = await loginUser(username, password);
+      return result.data;
     },
-  );
+    onSuccess: (data) => {
+      queryClient.setQueryData(['user'], data.username);
+    },
+  });
 }

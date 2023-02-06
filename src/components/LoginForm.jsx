@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
 import { useLogin } from '../queryHooks/useLogin';
+import { useDataByKey } from '../queryHooks/useDataByKey';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isEnable, setEnable] = useState(true);
-  const { data, isLoading, isError, isIdle, error, refetch } = useLogin(
-    username,
-    password,
-  );
-  const handleKeyUp = () => {
-    if (username.length > 0 && password.length > 0) setEnable(false);
-    else setEnable(true);
-  };
+  const { isError, error, isLoading, mutate, isSuccess } = useLogin();
+  const name = useDataByKey(['user']);
 
   return (
     <div>
-      <label>User Name</label>
+      <label>Username</label>
       <input
         type="text"
         id="username-input"
-        placeholder="username"
+        placeholder="Username"
         value={username}
-        onKeyUp={handleKeyUp}
         onChange={(event) => setUsername(event.target.value)}
       />
       <br />
@@ -32,7 +25,6 @@ const LoginForm = () => {
         type="password"
         id="password-input"
         placeholder="Password"
-        onKeyUp={handleKeyUp}
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
@@ -41,11 +33,15 @@ const LoginForm = () => {
       <button
         type="submit"
         id="button-input"
-        disabled={isEnable}
-        onClick={() => refetch()}
+        disabled={!(username && password)}
+        onClick={(e) => mutate({ username, password })}
       >
         Login
       </button>
+      {/* TODO */}
+      {isSuccess ? <h1>Logged in as {name}</h1> : <></>}
+      {isError ? <h1>{error.message}</h1> : <></>}
+      {isLoading ? <h1>Loading...</h1> : <></>}
     </div>
   );
 };
