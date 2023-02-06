@@ -3,7 +3,7 @@ import { loginUser } from '../api/auth';
 import useAuth from '../context/AuthContext';
 
 export function useLogin() {
-  const { login } = useAuth();
+  const { setCurrentUser } = useAuth();
 
   return useMutation({
     mutationFn: async ({ username, password }) => {
@@ -11,7 +11,7 @@ export function useLogin() {
       return result.data;
     },
     onSuccess: (data) => {
-      login(data.username);
+      setCurrentUser(data.username);
     },
   });
 }

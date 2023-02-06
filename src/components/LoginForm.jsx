@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import useAuth from '../context/AuthContext';
 import { useLogin } from '../queryHooks/useLogin';
-import { testEndpoint } from '../api/auth';
+import { useLogout } from '../queryHooks/useLogout';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { isError, error, isLoading, mutate, isSuccess } = useLogin();
+  const login = useLogin();
+  const logout = useLogout();
   const { user } = useAuth();
 
   return (
@@ -35,15 +36,21 @@ const LoginForm = () => {
         type="submit"
         id="button-input"
         disabled={!(username && password)}
-        onClick={(e) => mutate({ username, password })}
+        onClick={(e) => login.mutate({ username, password })}
       >
         Login
       </button>
       {/* TODO */}
-      <h1>Logged in as {user}</h1>
-      {isError ? <h1>{error.message}</h1> : <></>}
-      {isLoading ? <h1>Loading...</h1> : <></>}
-      <button onClick={testEndpoint}>Test</button>
+      {user ? (
+        <div>
+          <h1>Logged in as {user}</h1>
+          <button onClick={logout.mutate}>Log Out</button>
+        </div>
+      ) : (
+        <></>
+      )}
+      {login.isError || logout.isError ? <h1>{login.error.message}</h1> : <></>}
+      {login.isLoading || logout.isLoading ? <h1>Loading...</h1> : <></>}
     </div>
   );
 };

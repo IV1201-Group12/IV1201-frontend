@@ -5,25 +5,29 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState();
 
-  useEffect(() => {
+  const loadInitialData = () => {
     const currentUser = localStorage.getItem('user');
     if (currentUser) {
       setUser(currentUser);
     }
+  };
+
+  useEffect(() => {
+    loadInitialData();
   });
 
-  function login(username) {
+  function setCurrentUser(username) {
     localStorage.setItem('user', username);
     setUser(username);
   }
 
-  function logout() {
-    localStorage.setItem('user', undefined);
-    setUser(undefined);
+  function removeCurrentUser() {
+    localStorage.setItem('user', '');
+    setUser('');
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setCurrentUser, removeCurrentUser }}>
       {children}
     </AuthContext.Provider>
   );
