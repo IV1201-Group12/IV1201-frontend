@@ -3,11 +3,11 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState('');
 
   const loadInitialData = () => {
     const currentUser = localStorage.getItem('user');
-    if (currentUser) {
+    if (currentUser !== undefined) {
       setUser(currentUser);
     }
   };
@@ -16,15 +16,15 @@ export function AuthProvider({ children }) {
     loadInitialData();
   });
 
-  function setCurrentUser(username) {
+  const setCurrentUser = (username) => {
     localStorage.setItem('user', username);
     setUser(username);
-  }
+  };
 
-  function removeCurrentUser() {
+  const removeCurrentUser = () => {
     localStorage.setItem('user', '');
     setUser('');
-  }
+  };
 
   return (
     <AuthContext.Provider value={{ user, setCurrentUser, removeCurrentUser }}>
