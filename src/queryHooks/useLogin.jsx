@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { loginUser } from '../api/auth';
+import useAuth from '../context/AuthContext';
 
 export function useLogin() {
-  const queryClient = useQueryClient();
+  const { setCurrentUser } = useAuth();
 
   return useMutation({
     mutationFn: async ({ username, password }) => {
@@ -10,7 +11,7 @@ export function useLogin() {
       return result.data;
     },
     onSuccess: (data) => {
-      queryClient.setQueryData(['user'], data.username);
+      setCurrentUser(data.username);
     },
   });
 }

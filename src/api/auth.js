@@ -2,8 +2,8 @@ import axios from 'axios';
 import { apiConfig } from '../config/api-config';
 
 export const authApi = axios.create({
-  baseURL: `${apiConfig.BACKEND_BASEURL}/auth`,
   withCredentials: true,
+  baseURL: `${apiConfig.BACKEND_BASEURL}/auth`,
 });
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
@@ -18,5 +18,10 @@ export const loginUser = async (username, password) => {
     username,
     password,
   });
+  return response;
+};
+
+export const logoutUser = async () => {
+  const response = await authApi.get('/logout');
   return response;
 };

@@ -22,7 +22,7 @@ export default function CreateAccount() {
       password,
       role_id: 2,
     };
-    const response = await signUpUserFn(applicant);
+    const response = await signUpUser(applicant);
     setResponseStatus(response.status);
   };
 
