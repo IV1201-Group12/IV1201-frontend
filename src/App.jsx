@@ -13,9 +13,9 @@ function App() {
         <Route
           path="/applications"
           element={
-            <PrivateRoute>
-              <ApplicationsPage />
-            </PrivateRoute>
+            // <PrivateRoute>
+            <ApplicationsPage />
+            // {/* </PrivateRoute> */}
           }
         />
         <Route path="/registration" element={<RegistrationPage />} />
