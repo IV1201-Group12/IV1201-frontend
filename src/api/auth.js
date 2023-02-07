@@ -8,8 +8,8 @@ export const authApi = axios.create({
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
 
-export const signUpUser = async (user) => {
-  const response = await authApi.post('createAccount', user);
+export const registerUser = async (user) => {
+  const response = await authApi.post('/createAccount', user);
   return response;
 };
 
