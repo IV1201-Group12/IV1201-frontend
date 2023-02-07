@@ -1,4 +1,3 @@
-// @ts-check
 const { test, expect } = require('@playwright/test');
 
 test('landing page has title', async ({ page }) => {
