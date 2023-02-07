@@ -1,41 +1,39 @@
 import { useState } from 'react';
 
-//import { useCreateAccount } from '../queryHooks/useCreateAccount';
-import { signUpUser } from '../api/auth';
+import { useCreateAccount } from '../queryHooks/useCreateAccount';
 
 export default function CreateAccount() {
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
+  const { isError, error, isLoading, mutate, isSuccess } = useCreateAccount();
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [pnr, setPnr] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [responseStatus, setResponseStatus] = useState(null);
 
   const submit = async () => {
     const applicant = {
-      name,
-      surname,
+      firstname,
+      lastname,
       email,
       pnr,
       username,
       password,
-      role_id: 2,
+      role: 'applicant',
     };
-    const response = await signUpUserFn(applicant);
-    setResponseStatus(response.status);
+    mutate(applicant);
   };
 
   const onChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
-    if (name === 'name') {
-      setName(value);
+    if (name === 'firstname') {
+      setFirstname(value);
     }
 
-    if (name === 'surname') {
-      setSurname(value);
+    if (name === 'lastname') {
+      setLastname(value);
     }
 
     if (name === 'email') {
@@ -55,22 +53,28 @@ export default function CreateAccount() {
   };
   return (
     <div>
-      <div>{responseStatus}</div>
+      {isLoading ? <h1>Loading...</h1> : null}
+      {isSuccess ? (
+        <h1 style={{ color: 'green' }}>New account created</h1>
+      ) : null}
+      {isError ? (
+        <h1 style={{ color: 'red' }}>{error.response.data} </h1>
+      ) : null}
       <form>
-        <label htmlFor="name">First Name</label>
+        <label htmlFor="firstname">First Name</label>
         <input
-          id="name"
-          name="name"
+          id="firstname"
+          name="firstname"
           type="text"
-          value={name}
+          value={firstname}
           onChange={onChange}
         />
-        <label htmlFor="surname">Last Name</label>
+        <label htmlFor="lastname">Last Name</label>
         <input
-          id="surname"
-          name="surname"
+          id="lastname"
+          name="lastname"
           type="text"
-          value={surname}
+          value={lastname}
           onChange={onChange}
         />
         <label htmlFor="email">Email Address</label>
@@ -87,6 +91,7 @@ export default function CreateAccount() {
           name="pnr"
           type="number"
           value={pnr}
+          placeholder="YYYYMMDDXXXX"
           onChange={onChange}
         />
         <label htmlFor="username">Username</label>
