@@ -13,7 +13,7 @@ function App() {
         <Route
           path="/applications"
           element={
-            <PrivateRoute>
+            <PrivateRoute roles={['recruiter']}>
               <ApplicationsPage />
             </PrivateRoute>
           }

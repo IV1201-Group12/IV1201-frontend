@@ -3,7 +3,7 @@ import { logoutUser } from '../api/auth';
 import useAuth from '../context/AuthContext';
 
 export function useLogout() {
-  const { removeCurrentUser } = useAuth();
+  const { removeCurrentUser, removeCurrentRole } = useAuth();
 
   return useMutation({
     mutationFn: async () => {
@@ -12,6 +12,7 @@ export function useLogout() {
     },
     onSuccess: () => {
       removeCurrentUser();
+      removeCurrentRole();
     },
   });
 }
