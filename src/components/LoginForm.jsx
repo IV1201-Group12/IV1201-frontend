@@ -43,7 +43,7 @@ const LoginForm = () => {
       {/* TODO */}
       {user ? (
         <div>
-          <h1>Logged in as {user}</h1>
+          <h1>Logged in as {JSON.parse(user).username}</h1>
           <button onClick={logout.mutate}>Log Out</button>
         </div>
       ) : (

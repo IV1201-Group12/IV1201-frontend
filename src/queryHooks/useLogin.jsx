@@ -3,7 +3,7 @@ import { loginUser } from '../api/auth';
 import useAuth from '../context/AuthContext';
 
 export function useLogin() {
-  const { setCurrentUser, setCurrentRole } = useAuth();
+  const { setCurrentUser } = useAuth();
 
   return useMutation({
     mutationFn: async ({ username, password }) => {
@@ -11,8 +11,9 @@ export function useLogin() {
       return result.data;
     },
     onSuccess: (data) => {
-      setCurrentUser(data.username);
-      setCurrentRole(data.role);
+      setCurrentUser(
+        JSON.stringify({ username: data.username, role: data.role }),
+      );
     },
   });
 }

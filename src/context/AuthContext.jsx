@@ -4,17 +4,12 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState('');
-  const [role, setRole] = useState('');
   const [hydrated, setHydrated] = useState(false);
 
   const loadInitialData = () => {
     const currentUser = localStorage.getItem('user');
-    const currentRole = localStorage.getItem('role');
     if (currentUser !== undefined) {
       setUser(currentUser);
-    }
-    if (currentRole !== undefined) {
-      setRole(currentRole);
     }
     setHydrated(true);
   };
@@ -23,9 +18,9 @@ export function AuthProvider({ children }) {
     loadInitialData();
   }, []);
 
-  const setCurrentUser = (username) => {
-    localStorage.setItem('user', username);
-    setUser(username);
+  const setCurrentUser = (user) => {
+    localStorage.setItem('user', user);
+    setUser(user);
   };
 
   const removeCurrentUser = () => {
@@ -33,26 +28,13 @@ export function AuthProvider({ children }) {
     setUser('');
   };
 
-  const setCurrentRole = (role) => {
-    localStorage.setItem('role', role);
-    setRole(role);
-  };
-
-  const removeCurrentRole = () => {
-    localStorage.setItem('role', '');
-    setRole('');
-  };
-
   return (
     <AuthContext.Provider
       value={{
         user,
-        role,
         hydrated,
         setCurrentUser,
         removeCurrentUser,
-        setCurrentRole,
-        removeCurrentRole,
       }}
     >
       {children}
