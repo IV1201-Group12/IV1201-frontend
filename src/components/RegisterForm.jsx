@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useRegister } from '../queryHooks/useRegister';
 
-export default function RegistrationForm() {
+export default function RegisterForm() {
   const { isError, error, isLoading, mutate, isSuccess } = useRegister();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -19,7 +19,6 @@ export default function RegistrationForm() {
       pnr,
       username,
       password,
-      role: 'applicant',
     };
     mutate(applicant);
   };
