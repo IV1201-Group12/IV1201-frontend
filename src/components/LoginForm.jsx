@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useAuth from '../context/AuthContext';
 import { useLogin } from '../queryHooks/useLogin';
 import { useLogout } from '../queryHooks/useLogout';
@@ -12,31 +12,35 @@ const LoginForm = () => {
 
   return (
     <div>
-      <label>Username</label>
-      <input
-        type="text"
-        id="username-input"
-        placeholder="Username"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
+      <label>
+        Username
+        <input
+          type="text"
+          id="username-input"
+          placeholder="Username"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </label>
       <br />
       <br />
-      <label>Password</label>
-      <input
-        type="password"
-        id="password-input"
-        placeholder="Password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
+      <label>
+        Password
+        <input
+          type="password"
+          id="password-input"
+          placeholder="Password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </label>
       <br />
       <br />
       <button
         type="submit"
         id="button-input"
         disabled={!(username && password)}
-        onClick={(e) => login.mutate({ username, password })}
+        onClick={() => login.mutate({ username, password })}
       >
         Login
       </button>
