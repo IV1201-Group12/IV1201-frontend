@@ -11,7 +11,9 @@ export function useLogin() {
       return result.data;
     },
     onSuccess: (data) => {
-      setCurrentUser(data.username);
+      setCurrentUser(
+        JSON.stringify({ username: data.username, role: data.role }),
+      );
     },
   });
 }

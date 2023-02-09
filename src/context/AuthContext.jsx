@@ -18,9 +18,9 @@ export function AuthProvider({ children }) {
     loadInitialData();
   }, []);
 
-  const setCurrentUser = (username) => {
-    localStorage.setItem('user', username);
-    setUser(username);
+  const setCurrentUser = (user) => {
+    localStorage.setItem('user', user);
+    setUser(user);
   };
 
   const removeCurrentUser = () => {
@@ -30,7 +30,12 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, hydrated, setCurrentUser, removeCurrentUser }}
+      value={{
+        user,
+        hydrated,
+        setCurrentUser,
+        removeCurrentUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
