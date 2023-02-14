@@ -12,3 +12,13 @@ export async function getAllApplications() {
   const { data } = await applicationsApi.get();
   return data;
 }
+
+export async function getApplication(id) {
+  const applicationApi = axios.create({
+    withCredentials: true,
+    baseURL: `${apiConfig.BACKEND_BASEURL}/applications/${id}`,
+  });
+
+  const { data } = await applicationApi.get();
+  return data;
+}
