@@ -1,6 +1,8 @@
 import { useGetApplications } from '../queryHooks/useGetApplications';
+import { useNavigate } from 'react-router-dom';
 
 const ListOfApplications = () => {
+  const navigate = useNavigate();
   const { data, isLoading, isError, error } = useGetApplications();
 
   if (isLoading) {
@@ -21,15 +23,27 @@ const ListOfApplications = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((application, i) => (
-          <tr key={i}>
-            <td>{i + 1}</td>
-            <td>
-              {application.applicant.firstname} {application.applicant.lastname}
-            </td>
-            <td>{application.status}</td>
-          </tr>
-        ))}
+        {data
+          ? data.map((application, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>
+                  {application.applicant.firstname}{' '}
+                  {application.applicant.lastname}
+                </td>
+                <td>{application.status}</td>
+                <td>
+                  <button
+                    onClick={() =>
+                      navigate(`/applications/${application.applicant.id}`)
+                    }
+                  >
+                    View Details
+                  </button>
+                </td>
+              </tr>
+            ))
+          : null}
       </tbody>
     </table>
   );

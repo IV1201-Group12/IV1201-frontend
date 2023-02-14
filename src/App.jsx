@@ -7,6 +7,7 @@ import {
 import ApplicationsPage from './pages/ApplicationsPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import ApplicationPage from './pages/ApplicationPage';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -20,6 +21,14 @@ function App() {
             element={
               <PrivateRoute roles={['recruiter']}>
                 <ApplicationsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/applications/:id"
+            element={
+              <PrivateRoute roles={['recruiter']}>
+                <ApplicationPage />
               </PrivateRoute>
             }
           />
