@@ -24,10 +24,9 @@ jobs:
     steps:
       - run: tree
       - name: Setup Node
-        # uses: actions/setup-node@v3
-        # with:
-        #   node-version: 18.x
-        run: sudo apt update && sudo apt install Node.js && sudo apt install npm && node --version && npm --version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
       - name: Checkout the Backend
         uses: actions/checkout@v3
         with:
@@ -38,7 +37,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: frontend
-      - run: tree
+      - run: pwd && tree
       - name: Goto Backend
         run: cd backend && tree
       - name: Install dependencies
