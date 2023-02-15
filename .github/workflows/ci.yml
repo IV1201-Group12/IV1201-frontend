@@ -51,8 +51,8 @@ jobs:
           DATABASE_DIALECT: postgres
       - name: Install Frontend Dependencies
         run: npm --prefix frontend/ ci
-      # - name: Install Playwright Browsers
-      #   run: npx playwright install --with-deps
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: cd frontend/ && npx playwright test
       - uses: actions/upload-artifact@v3
