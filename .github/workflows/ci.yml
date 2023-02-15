@@ -21,8 +21,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        # ports:
-        #   - 5432:5432
     steps:
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -51,6 +49,8 @@ jobs:
           DATABASE_DIALECT: postgres
       - name: Install Frontend Dependencies
         run: npm --prefix frontend/ ci
+      - name: Install Playwright Browsers
+        run: cd frontend/ && npx playwright install --with-deps
       - name: Run Playwright tests
         run: cd frontend/ && npx playwright test
       - uses: actions/upload-artifact@v3
