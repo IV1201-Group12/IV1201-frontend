@@ -23,5 +23,4 @@ test('test', async ({ page }) => {
   //   );
   console.log(`${text}`);
   //   expect(successMessage).toBe('New account created');
-
 });
