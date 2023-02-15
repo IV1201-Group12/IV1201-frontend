@@ -1,15 +1,21 @@
 name: Node Continuous Integration
+
 on:
   push:
     branches: ['development']
   pull_request:
     branches: ['development']
+
 jobs:
   acceptance_test:
     runs-on: ubuntu-latest
+
+    container:
+      image: node:18
+
     services:
       postgres:
-        image: postgres
+        image: postgres:11
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -19,8 +25,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
+
     steps:
       - name: Checkout the Backend
         uses: actions/checkout@v3
@@ -28,35 +33,39 @@ jobs:
           repository: IV1201-Group12/IV1201-backend
           ref: development
           path: backend
+
       - name: Checkout the Frontend
         uses: actions/checkout@v3
         with:
           path: frontend
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
+
+      # - name: Setup Node
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18.x
+      #     cache: 'npm'
+      #     cache-dependency-path: frontend/package-lock.json
+
       - name: Install Backend Dependencies
         run: npm ci
         working-directory: ./backend
+
       - name: Start Backend
         run: npm run start&
         env:
-          DATABASE_HOST: localhost
+          DATABASE_HOST: postgres
           DATABASE_PORT: 5432
           DATABASE_USERNAME: postgres
           DATABASE_PASSWORD: postgres
           DATABASE_NAME: recruitment_application
           DATABASE_DIALECT: postgres
         working-directory: ./backend
-      - run: jobs
 
       - name: Get installed Playwright version
         id: playwright-version
         run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
         working-directory: ./frontend
+
       - name: Cache playwright binaries
         uses: actions/cache@v3
         id: playwright-cache
@@ -64,17 +73,20 @@ jobs:
           path: |
             /home/runner/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
       - name: Install Frontend Dependencies
         run: npm ci
         working-directory: ./frontend
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         # if: steps.playwright-cache.outputs.cache-hit != 'true'
         working-directory: ./frontend
+
       - name: Run Playwright tests
         run: npx playwright test
         working-directory: ./frontend
-      - run: jobs
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:
