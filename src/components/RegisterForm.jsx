@@ -56,7 +56,7 @@ export default function RegisterForm() {
       {isSuccess ? (
         <h1 style={{ color: 'green' }}>New account created</h1>
       ) : null}
-      {isError ? <h1 style={{ color: 'green' }}>{error.message} </h1> : null}
+      {isError ? <h1 style={{ color: 'red' }}>{error.message} </h1> : null}
       <form>
         <label htmlFor="firstname">First Name</label>
         <input
