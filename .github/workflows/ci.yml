@@ -22,11 +22,6 @@ jobs:
         ports:
           - 5432:5432
     steps:
-      - run: tree
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
       - name: Checkout the Backend
         uses: actions/checkout@v3
         with:
@@ -37,11 +32,17 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: frontend
-      - run: pwd && tree
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
       - name: Install Backend Dependencies
-        run: npm --prefix backend/ ci
+        run: npm ci
+        working-directory: ./backend
       - name: Start Backend
-        run: npm --prefix backend/ run start&
+        run: npm run start&
         env:
           DATABASE_HOST: localhost
           DATABASE_PORT: 5432
@@ -49,12 +50,33 @@ jobs:
           DATABASE_PASSWORD: postgres
           DATABASE_NAME: recruitment_application
           DATABASE_DIALECT: postgres
+        working-directory: ./backend
+
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
+        working-directory: ./frontend
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
       - name: Install Frontend Dependencies
-        run: npm --prefix frontend/ ci
+        run: npm ci
+        working-directory: ./frontend
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        working-directory: ./frontend
+      - name: Install Playwright Browsers
+        run: npx playwright install-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        working-directory: ./frontend
       - name: Run Playwright tests
-        run: cd frontend/ && npx playwright test
+        run: npx playwright test
+        working-directory: ./frontend
       - uses: actions/upload-artifact@v3
         if: always()
         with:
