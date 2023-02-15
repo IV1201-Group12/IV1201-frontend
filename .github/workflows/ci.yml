@@ -39,7 +39,7 @@ jobs:
           path: frontend
       - run: tree
       - name: Goto Backend
-        run: cd backend
+        run: cd backend && tree
       - name: Install dependencies
         run: npm ci
       - name: Start Backend
@@ -52,7 +52,7 @@ jobs:
           DATABASE_NAME: recruitment_application
           DATABASE_DIALECT: postgres
       - name: Goto Frontend
-        run: cd ../frontend
+        run: cd ../frontend && tree
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
