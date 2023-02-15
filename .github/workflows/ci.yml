@@ -22,6 +22,12 @@ jobs:
         ports:
           - 5432:5432
     steps:
+      - run: tree
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
       - name: Checkout the Backend
         uses: actions/checkout@v3
         with:
@@ -35,11 +41,6 @@ jobs:
       - run: tree
       - name: Goto Backend
         run: cd backend
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: 'npm'
       - name: Install dependencies
         run: npm ci
       - name: Start Backend
@@ -53,11 +54,6 @@ jobs:
           DATABASE_DIALECT: postgres
       - name: Goto Frontend
         run: cd ../frontend
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: 'npm'
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
