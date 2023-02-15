@@ -38,6 +38,11 @@ jobs:
         with:
           path: frontend
       - run: pwd && tree
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ npx playwright --version }}
       - name: Install Backend Dependencies
         run: npm --prefix backend/ ci
       - name: Start Backend
@@ -52,7 +57,7 @@ jobs:
       - name: Install Frontend Dependencies
         run: npm --prefix frontend/ ci
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: cd frontend/ && npx playwright install --with-deps
       - name: Run Playwright tests
         run: cd frontend/ && npx playwright test
       - uses: actions/upload-artifact@v3
