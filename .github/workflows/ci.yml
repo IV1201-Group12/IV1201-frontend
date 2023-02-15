@@ -81,15 +81,15 @@ jobs:
         working-directory: ./frontend
 
       # Installs browsers and OS dependencies for playwright unless it's found in cache
-      - name: Install Playwright Browsers
+      - name: Install Playwright Dependencies and Browsers
         run: |
           npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         working-directory: ./frontend
 
       # Installs webkit for playwright even though cache was found. Webkit doesn't seem to cache properly.
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps webkit
+      - name: Install Webkit
+        run: npx playwright install webkit
         working-directory: ./frontend
 
       - name: Run Playwright tests
