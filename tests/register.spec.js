@@ -12,7 +12,7 @@ test('test', async ({ page }) => {
   await page.fill('input[name=email]', 'john.doe@example.com');
   await page.fill('input[name=pnr]', '198012312348');
   await page.fill('input[name=username]', 'johndoe');
-  await page.fill('input[name=password]', 'secretpassasdwordrd');
+  await page.fill('input[name=password]', 'secretpassasdwoasdrdrd');
   await page.click('button');
   await page.waitForSelector('h1');
   const text = await page.$eval('h1', (testtext) => testtext.textContent);
