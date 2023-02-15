@@ -10,8 +10,8 @@ jobs:
   acceptance_test:
     runs-on: ubuntu-latest
 
-    container:
-      image: node:18
+    # container:
+    #   image: node:18
 
     services:
       postgres:
@@ -25,6 +25,8 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
       - name: Checkout the Backend
@@ -39,12 +41,12 @@ jobs:
         with:
           path: frontend
 
-      # - name: Setup Node
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18.x
-      #     cache: 'npm'
-      #     cache-dependency-path: frontend/package-lock.json
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install Backend Dependencies
         run: npm ci
@@ -53,7 +55,7 @@ jobs:
       - name: Start Backend
         run: npm run start&
         env:
-          DATABASE_HOST: postgres
+          DATABASE_HOST: localhost
           DATABASE_PORT: 5432
           DATABASE_USERNAME: postgres
           DATABASE_PASSWORD: postgres
