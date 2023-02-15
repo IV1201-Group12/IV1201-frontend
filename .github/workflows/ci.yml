@@ -27,6 +27,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
       - name: Checkout the Backend
         uses: actions/checkout@v3
         with:
@@ -51,8 +52,8 @@ jobs:
           DATABASE_DIALECT: postgres
       - name: Install Frontend Dependencies
         run: npm --prefix frontend/ ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: cd frontend/ && npx playwright test
       - uses: actions/upload-artifact@v3
@@ -61,3 +62,8 @@ jobs:
           name: playwright-report
           path: frontend/playwright-report/
           retention-days: 30
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/ms-playwright
