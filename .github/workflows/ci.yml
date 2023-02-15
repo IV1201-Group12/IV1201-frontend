@@ -100,7 +100,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --project=${{ matrix.project.browser }}
         env:
           DEBUG: pw:browser*
           PORT: ${{ matrix.project.port }}
