@@ -1,15 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-import pgPromise from 'pg-promise';
-
-const pgp = pgPromise({
-  /* Initialization Options */
-});
-
-//const db = pgp('postgres://username:password@host:port/database');
-
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://127.0.0.1:5173/registration');
+  await page.goto('/register');
 });
 
 test.afterEach(async () => {});
