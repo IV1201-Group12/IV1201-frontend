@@ -81,14 +81,17 @@ jobs:
         working-directory: ./frontend
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: |
+          npx playwright install --with-deps chromium
+          npx playwright install --with-deps firefox
+          npx playwright install --with-deps webkit
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         working-directory: ./frontend
 
-      - name: Install Playwright Browsers
-        run: npx playwright install-deps
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        working-directory: ./frontend
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install-deps
+      #   if: steps.playwright-cache.outputs.cache-hit != 'true'
+      #   working-directory: ./frontend
 
       - name: Run Playwright tests
         run: npx playwright test
