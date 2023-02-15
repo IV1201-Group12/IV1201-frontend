@@ -7,6 +7,8 @@ on:
 jobs:
   acceptance_test:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.30.0-focal
     services:
       postgres:
         image: postgres
@@ -49,8 +51,6 @@ jobs:
           DATABASE_DIALECT: postgres
       - name: Install Frontend Dependencies
         run: npm --prefix frontend/ ci
-      - name: Install Playwright Browsers
-        run: cd frontend/ && npx playwright install --with-deps
       - name: Run Playwright tests
         run: cd frontend/ && npx playwright test
       - uses: actions/upload-artifact@v3
