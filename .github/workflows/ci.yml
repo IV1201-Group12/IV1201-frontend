@@ -41,7 +41,7 @@ jobs:
       - name: Install Backend Dependencies
         run: npm --prefix backend/ ci
       - name: Start Backend
-        run: npm --prefix backend/ run start
+        run: npm --prefix backend/ run start&
         env:
           DATABASE_HOST: localhost
           DATABASE_PORT: 5432
