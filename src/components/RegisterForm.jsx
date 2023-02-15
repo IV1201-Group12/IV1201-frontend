@@ -52,7 +52,7 @@ export default function RegisterForm() {
   };
   return (
     <div>
-      {isLoading ? <h1>Loading...</h1> : null}
+      {isLoading ? <h2>Loading...</h2> : null}
       {isSuccess ? (
         <h1 style={{ color: 'green' }}>New account created</h1>
       ) : null}
