@@ -76,9 +76,9 @@ jobs:
       #       /home/runner/.cache/ms-playwright
       #     key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
-      # - name: Install Frontend Dependencies
-      #   run: npm ci
-      #   working-directory: ./frontend
+      - name: Install Frontend Dependencies
+        run: npm ci
+        working-directory: ./frontend
 
       # # Installs binaries and system dependencies for playwright unless it's found in cache
       # - name: Install Playwright Dependencies and Binaries
