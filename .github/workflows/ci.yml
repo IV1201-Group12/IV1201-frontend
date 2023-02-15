@@ -25,7 +25,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: recruitment_application
+          POSTGRES_DB: ${{ matrix.project.browser }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -35,13 +35,13 @@ jobs:
           - 5432:5432
 
     steps:
-      - name: Create DB
-        run: |
-          docker ps
-          docker exec -it 619a573b20eb bash
-          psql -U postgres
-          create database ${{ matrix.project.browser }}
-          exit && exit
+      # - name: Create DB
+      #   run: |
+      #     docker ps
+      #     docker exec -it 619a573b20eb bash
+      #     psql -U postgres
+      #     create database ${{ matrix.project.browser }}
+      #     exit && exit
 
       - name: Checkout the Backend
         uses: actions/checkout@v3
