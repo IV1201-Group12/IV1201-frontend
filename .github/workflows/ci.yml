@@ -32,13 +32,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: frontend
+      - name: Goto Backend
+        run: cd backend
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
           cache: 'npm'
-      - name: Goto Backend
-        run: cd backend
       - name: Install dependencies
         run: npm ci
       - name: Start Backend
@@ -52,6 +52,11 @@ jobs:
           DATABASE_DIALECT: postgres
       - name: Goto Frontend
         run: cd ../frontend
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
