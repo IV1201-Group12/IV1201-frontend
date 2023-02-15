@@ -38,7 +38,7 @@ jobs:
       - name: Create DB
         run: |
           docker ps
-          docker exec -it postgres bash
+          docker exec -it 619a573b20eb bash
           psql -U postgres
           create database ${{ matrix.project.browser }}
           exit && exit
