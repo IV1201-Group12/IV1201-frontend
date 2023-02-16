@@ -111,7 +111,8 @@ jobs:
         run: npx playwright test --project=${{ matrix.project.browser }}
         env:
           DEBUG: pw:browser*
-          PORT: ${{ matrix.project.port }}
+          REACT_APP_BACKEND_PORT: ${{ matrix.project.port }}
+          REACT_APP_BACKEND_HOST: 127.0.0.1
         working-directory: ./frontend
 
       - uses: actions/upload-artifact@v3
