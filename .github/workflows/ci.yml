@@ -12,9 +12,10 @@ jobs:
       matrix:
         project:
           [
-            { browser: chromium, port: 5001 },
-            { browser: firefox, port: 5002 },
-            { browser: webkit, port: 5003 },
+            { name: edge, browser: chromium, port: 5001 },
+            { name: chrome, browser: chromium, port: 5002 },
+            { name: firefox, browser: firefox, port: 5003 },
+            { name: safari, browser: webkit, port: 5004 },
           ]
 
     services:
@@ -23,7 +24,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: ${{ matrix.project.browser }}
+          POSTGRES_DB: ${{ matrix.project.name }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -63,7 +64,7 @@ jobs:
           DATABASE_PORT: 5432
           DATABASE_USERNAME: postgres
           DATABASE_PASSWORD: postgres
-          DATABASE_NAME: ${{ matrix.project.browser }}
+          DATABASE_NAME: ${{ matrix.project.name }}
           DATABASE_DIALECT: postgres
           PORT: ${{ matrix.project.port }}
         working-directory: ./backend
@@ -79,7 +80,7 @@ jobs:
         with:
           path: |
             /home/runner/.cache/ms-playwright
-          key: ${{ runner.os }}-${{ matrix.project.browser }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+          key: ${{ runner.os }}-${{ matrix.project.name }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
       - name: Install Frontend Dependencies
         run: npm ci
@@ -98,7 +99,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Run Playwright tests
-        run: npx playwright test --project=${{ matrix.project.browser }}
+        run: npx playwright test --project=${{ matrix.project.name }}
         env:
           DEBUG: pw:browser*
           VITE_BACKEND_PORT: ${{ matrix.project.port }}
