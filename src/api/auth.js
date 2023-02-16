@@ -9,7 +9,7 @@ export const authApi = axios.create({
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
 
 export const registerUser = async (user) => {
-  const response = await authApi.post('/createAccount', user);
+  const response = await authApi.post('/register', user);
   return response;
 };
 
