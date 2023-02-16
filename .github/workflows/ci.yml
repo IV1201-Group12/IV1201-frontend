@@ -35,14 +35,6 @@ jobs:
           - 5432:5432
 
     steps:
-      # - name: Create DB
-      #   run: |
-      #     docker ps
-      #     docker exec -it 619a573b20eb bash
-      #     psql -U postgres
-      #     create database ${{ matrix.project.browser }}
-      #     exit && exit
-
       - name: Checkout the Backend
         uses: actions/checkout@v3
         with:
@@ -111,8 +103,8 @@ jobs:
         run: npx playwright test --project=${{ matrix.project.browser }}
         env:
           DEBUG: pw:browser*
-          REACT_APP_BACKEND_PORT: ${{ matrix.project.port }}
-          REACT_APP_BACKEND_HOST: 127.0.0.1
+          VITE_BACKEND_PORT: ${{ matrix.project.port }}
+          VITE_BACKEND_HOST: '127.0.0.1'
         working-directory: ./frontend
 
       - uses: actions/upload-artifact@v3
