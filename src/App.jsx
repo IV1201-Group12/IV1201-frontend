@@ -9,13 +9,14 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import ApplicationPage from './pages/ApplicationPage';
 import PrivateRoute from './components/PrivateRoute';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
     <div className="container">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Navigate to="/login" />} />
+          <Route exact path="/" element={<LandingPage />} />
           <Route
             path="/applications"
             element={

@@ -6,25 +6,13 @@ test.beforeEach(async ({ page }) => {
 
 test.afterEach(async () => {});
 
-test('test', async ({ page }, workerInfo) => {
-  await page.fill(
-    'input[name=firstname]',
-    `firstname-${workerInfo.project.name}`,
-  );
-  await page.fill(
-    'input[name=lastname]',
-    `lastname-${workerInfo.project.name}`,
-  );
-  await page.fill(
-    'input[name=email]',
-    `${workerInfo.project.name}@example.com`,
-  );
-  await page.fill('input[name=pnr]', `19801231234${workerInfo.workerIndex}`);
-  await page.fill(
-    'input[name=username]',
-    `username-${workerInfo.project.name}`,
-  );
-  await page.fill('input[name=password]', `pass-${workerInfo.project.name}`);
+test('test', async ({ page }) => {
+  await page.fill('input[name=firstname]', 'John');
+  await page.fill('input[name=lastname]', 'Doe');
+  await page.fill('input[name=email]', 'john.doe@example.com');
+  await page.fill('input[name=pnr]', '198012312348');
+  await page.fill('input[name=username]', 'johndoe');
+  await page.fill('input[name=password]', 'secretpassword');
   await page.click('button');
   await page.waitForSelector('h1[style="color: green;"]');
   const successMessage = await page.$eval(
