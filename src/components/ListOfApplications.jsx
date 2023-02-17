@@ -28,7 +28,8 @@ const ListOfApplications = () => {
               <tr key={i}>
                 <td>{i + 1}</td>
                 <td>
-                  {application.user.firstname} {application.user.lastname}
+                  {application.applicant.firstname}{' '}
+                  {application.applicant.lastname}
                 </td>
                 <td>{application.status}</td>
                 <td>
