@@ -1,10 +1,17 @@
 import axios from 'axios';
 import { apiConfig } from '../config/api-config';
 
-export const applicationsApi = axios.create({
+const applicationsApi = axios.create({
   withCredentials: true,
   baseURL: `${apiConfig.BACKEND_BASEURL}/applications`,
 });
+
+const getApplicationApi = (id) => {
+  return axios.create({
+    withCredentials: true,
+    baseURL: `${apiConfig.BACKEND_BASEURL}/applications/${id}`,
+  });
+};
 
 applicationsApi.defaults.headers.common['Content-Type'] = 'application/json';
 
@@ -14,11 +21,13 @@ export async function getAllApplications() {
 }
 
 export async function getApplication(id) {
-  const applicationApi = axios.create({
-    withCredentials: true,
-    baseURL: `${apiConfig.BACKEND_BASEURL}/applications/${id}`,
-  });
-
+  const applicationApi = getApplicationApi(id);
   const { data } = await applicationApi.get();
   return data;
+}
+
+export async function updateStatusOfApplication(status, id) {
+  const applicationApi = getApplicationApi(id);
+  const response = await applicationApi.put('', { status, id });
+  return response;
 }
