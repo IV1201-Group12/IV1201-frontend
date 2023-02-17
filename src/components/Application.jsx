@@ -37,10 +37,10 @@ const Application = () => {
 
   return (
     <>
-      <h1>First name: {data.user.firstname}</h1>
-      <h1>Last name: {data.user.lastname}</h1>
-      <h1>Email: {data.user.email}</h1>
-      <h1>Person number: {data.user.pnr}</h1>
+      <h1>First name: {data.applicant.firstname}</h1>
+      <h1>Last name: {data.applicant.lastname}</h1>
+      <h1>Email: {data.applicant.email}</h1>
+      <h1>Person number: {data.applicant.pnr}</h1>
       {data.competences.map((competence, index) => {
         return (
           <div key={index}>
