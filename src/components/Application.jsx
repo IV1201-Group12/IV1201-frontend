@@ -1,30 +1,38 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useGetApplication } from '../queryHooks/useGetApplication';
 import { useUpdateStatus } from '../queryHooks/useUpdateStatus';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Application = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data, isLoading, isError, error } = useGetApplication(id);
-  const { mutate } = useUpdateStatus();
+  const { data, isLoading } = useGetApplication(id);
+  const { mutate, isError, error } = useUpdateStatus();
+
+  useEffect(() => {}, []);
 
   if (isLoading) return <h1>Loading...</h1>;
+
+  if (isError) {
+    return <h1>{error.response.data}</h1>;
+  }
 
   if (data) {
     setTimeout(() => {
       const status = document.getElementById(`${data.status}`);
       status.selected = 'selected';
-    }, 100);
+    }, 400);
   }
 
   const handleSave = () => {
     const statusSelected = document.getElementById('status').value;
-    mutate({ statusSelected, id });
-    setTimeout(() => {
-      navigate('/applications');
-    }, 500);
+    const version = data.version;
+    try {
+      mutate({ statusSelected, id, version });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

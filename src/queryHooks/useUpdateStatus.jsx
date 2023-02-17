@@ -3,8 +3,8 @@ import { updateStatusOfApplication } from '../api/applications';
 
 export function useUpdateStatus() {
   return useMutation({
-    mutationFn: async ({ statusSelected, id }) => {
-      await updateStatusOfApplication(statusSelected, id);
+    mutationFn: async ({ statusSelected, id, version }) => {
+      return await updateStatusOfApplication(statusSelected, id, version);
     },
   });
 }

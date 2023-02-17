@@ -26,8 +26,8 @@ export async function getApplication(id) {
   return data;
 }
 
-export async function updateStatusOfApplication(status, id) {
+export async function updateStatusOfApplication(status, id, version) {
   const applicationApi = getApplicationApi(id);
-  const response = await applicationApi.put('', { status, id });
+  const response = await applicationApi.put('', { status, id, version });
   return response;
 }
