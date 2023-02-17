@@ -28,15 +28,12 @@ const ListOfApplications = () => {
               <tr key={i}>
                 <td>{i + 1}</td>
                 <td>
-                  {application.applicant.firstname}{' '}
-                  {application.applicant.lastname}
+                  {application.user.firstname} {application.user.lastname}
                 </td>
                 <td>{application.status}</td>
                 <td>
                   <button
-                    onClick={() =>
-                      navigate(`/applications/${application.applicant.id}`)
-                    }
+                    onClick={() => navigate(`/applications/${application.id}`)}
                   >
                     View Details
                   </button>
