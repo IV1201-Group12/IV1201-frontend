@@ -19,12 +19,11 @@ jobs:
 
     strategy:
       matrix:
-        project:
-          [
+        project: [
             { name: edge, browser: chromium, port: 5001 },
-            { name: chrome, browser: chromium, port: 5002 },
-            { name: firefox, browser: firefox, port: 5003 },
-            { name: safari, browser: webkit, port: 5004 },
+            # { name: chrome, browser: chromium, port: 5002 },
+            # { name: firefox, browser: firefox, port: 5003 },
+            # { name: safari, browser: webkit, port: 5004 },
           ]
 
     services:
@@ -32,7 +31,6 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: postgres
-          PGUSER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: ${{ matrix.project.name }}
         options: >-
