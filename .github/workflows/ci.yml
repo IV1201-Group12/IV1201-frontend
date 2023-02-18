@@ -38,7 +38,7 @@ jobs:
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 5
+          --health-retries 500
         ports:
           - 5432:5432
 
@@ -72,6 +72,7 @@ jobs:
           DATABASE_NAME: ${{ matrix.project.name }}
           DATABASE_DIALECT: postgres
           PORT: ${{ matrix.project.port }}
+          JWT_SECRET: thisisasecret
         working-directory: ./backend
 
       - name: Get installed Playwright version
