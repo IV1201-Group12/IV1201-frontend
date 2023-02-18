@@ -74,6 +74,9 @@ jobs:
           PORT: ${{ matrix.project.port }}
         working-directory: ./backend
 
+      - name: Verify db is behaving
+        run: docker logs "${{ job.services.postgres.id }}"
+
       - name: Get installed Playwright version
         id: playwright-version
         run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
@@ -110,9 +113,6 @@ jobs:
           VITE_BACKEND_PORT: ${{ matrix.project.port }}
           VITE_BACKEND_HOST: '127.0.0.1'
         working-directory: ./frontend
-
-      - name: Verify db is behaving
-        run: docker logs "${{ job.services.postgres.id }}"
 
       - uses: actions/upload-artifact@v3
         if: always()
