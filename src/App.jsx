@@ -5,6 +5,8 @@ import LoginPage from './pages/LoginPage';
 import ApplicationPage from './pages/ApplicationPage';
 import PrivateRoute from './components/PrivateRoute';
 import LandingPage from './pages/LandingPage';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import {
   QueryCache,
   QueryClient,
@@ -31,6 +33,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <div className="container">
         <Router>
+          <Navbar />
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route
@@ -53,6 +56,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
           </Routes>
         </Router>
+        <Footer />
       </div>
       <ReactQueryDevtools />
     </QueryClientProvider>
