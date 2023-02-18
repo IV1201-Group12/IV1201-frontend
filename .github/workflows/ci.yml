@@ -32,6 +32,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          PGUSER: postgres
           POSTGRES_DB: ${{ matrix.project.name }}
         options: >-
           --health-cmd pg_isready
