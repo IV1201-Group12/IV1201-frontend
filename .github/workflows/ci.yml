@@ -115,6 +115,9 @@ jobs:
           VITE_BACKEND_HOST: '127.0.0.1'
         working-directory: ./frontend
 
+      - name: Verify db is behaving
+        run: docker logs "${{ job.services.postgres.id }}"
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:
