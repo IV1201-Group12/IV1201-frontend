@@ -5,5 +5,12 @@ export function useRegister() {
     mutationFn: async (user) => {
       await registerUser(user);
     },
+    onError: (error) => {
+      if (error?.response?.status === 400) {
+        error.message = error?.response?.data;
+      } else {
+        error.message = 'Server error';
+      }
+    },
   });
 }
