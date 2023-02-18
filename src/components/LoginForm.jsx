@@ -13,7 +13,7 @@ const LoginForm = () => {
   if (user) {
     return (
       <div>
-        <h1>Logged in as {JSON.parse(user).username}</h1>
+        <h1 id="logged-in-message">Logged in as {JSON.parse(user).username}</h1>
       </div>
     );
   }
@@ -47,14 +47,20 @@ const LoginForm = () => {
       <button
         type="submit"
         id="button-input"
-        disabled={!(username && password)}
         onClick={() => login.mutate({ username, password })}
       >
         Login
       </button>
-      {/* TODO */}
-      {login.isError || logout.isError ? <h1>{login.error.message}</h1> : <></>}
-      {login.isLoading || logout.isLoading ? <h1>Loading...</h1> : <></>}
+      {login.isError ? (
+        <h1 id="error-message">{login.error.message}</h1>
+      ) : (
+        <></>
+      )}
+      {login.isLoading || logout.isLoading ? (
+        <h1 id="loading-message">Loading...</h1>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
