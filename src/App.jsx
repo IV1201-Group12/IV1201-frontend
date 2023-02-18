@@ -31,9 +31,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="container">
-        <Router>
-          <Navbar />
+      <Router>
+        <Navbar />
+        <div className="container">
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route
@@ -55,9 +55,9 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
-        </Router>
+        </div>
         <Footer />
-      </div>
+      </Router>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
