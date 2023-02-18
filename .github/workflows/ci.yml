@@ -29,6 +29,14 @@ jobs:
     services:
       postgres:
         image: postgres:latest
+        command:
+          [
+            'postgres',
+            '-c',
+            'log_statement=all',
+            '-c',
+            'log_destination=stderr',
+          ]
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
