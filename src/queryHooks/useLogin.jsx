@@ -15,5 +15,12 @@ export function useLogin() {
         JSON.stringify({ username: data.username, role: data.role }),
       );
     },
+    onError: (error) => {
+      if (error?.response?.status === 401) {
+        error.message = 'No user with those credentials';
+      } else {
+        error.message = 'Server error';
+      }
+    },
   });
 }

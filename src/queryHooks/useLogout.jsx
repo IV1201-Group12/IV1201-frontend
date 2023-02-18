@@ -8,10 +8,11 @@ export function useLogout() {
   return useMutation({
     mutationFn: async () => {
       const result = await logoutUser();
+      removeCurrentUser();
       return result.data;
     },
-    onSuccess: () => {
-      removeCurrentUser();
+    onError: (error) => {
+      error.message = 'Server error';
     },
   });
 }

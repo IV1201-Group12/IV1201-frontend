@@ -1,7 +1,7 @@
 module.exports = {
   env: {
+    es2022: true,
     browser: true,
-    es2021: true,
     jest: true,
     node: true,
   },
@@ -22,6 +22,9 @@ module.exports = {
         extensions: ['.js', '.jsx'],
       },
     },
+  },
+  parserOptions: {
+    ecmaVersion: 2022,
   },
   rules: {
     'react/jsx-uses-react': 'off',
