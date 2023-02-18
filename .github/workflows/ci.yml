@@ -32,6 +32,7 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: postgres
+          PGUSER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: ${{ matrix.project.name }}
         options: >-
