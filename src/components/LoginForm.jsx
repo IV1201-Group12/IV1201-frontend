@@ -10,6 +10,14 @@ const LoginForm = () => {
   const logout = useLogout();
   const { user } = useAuth();
 
+  if (user) {
+    return (
+      <div>
+        <h1>Logged in as {JSON.parse(user).username}</h1>
+      </div>
+    );
+  }
+
   return (
     <div>
       <label>
@@ -45,14 +53,6 @@ const LoginForm = () => {
         Login
       </button>
       {/* TODO */}
-      {user ? (
-        <div>
-          <h1>Logged in as {JSON.parse(user).username}</h1>
-          <button onClick={logout.mutate}>Log Out</button>
-        </div>
-      ) : (
-        <></>
-      )}
       {login.isError || logout.isError ? <h1>{login.error.message}</h1> : <></>}
       {login.isLoading || logout.isLoading ? <h1>Loading...</h1> : <></>}
     </div>
