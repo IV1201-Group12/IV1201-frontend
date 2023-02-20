@@ -1,22 +1,28 @@
+//External packages
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ApplicationsPage from './pages/ApplicationsPage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import ApplicationPage from './pages/ApplicationPage';
-import PrivateRoute from './components/PrivateRoute';
-import LandingPage from './pages/LandingPage';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import {
   QueryCache,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+//Route level components
+import ApplicationsPage from './pages/ApplicationsPage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import ApplicationPage from './pages/ApplicationPage';
+import LandingPage from './pages/LandingPage';
+//Components
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute';
+//Context
 import useAuth from './context/AuthContext';
+//API
 import { logoutUser } from './api/auth';
 
 function App() {
+  //Sets the global behaviour on an error response with a status of 401, logging out the user.
   const { removeCurrentUser } = useAuth();
   const queryClient = new QueryClient({
     queryCache: new QueryCache({
