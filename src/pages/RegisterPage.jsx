@@ -1,11 +1,12 @@
 import RegisterForm from '../components/RegisterForm';
 
-import Footer from '../components/Footer';
+/**
+ * The route level component mapped to the "/register" path.
+ */
 const RegisterPage = () => {
   return (
     <>
       <RegisterForm />
-      <Footer />
     </>
   );
 };

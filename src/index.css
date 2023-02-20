@@ -8,6 +8,32 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   align-items: center;
+  margin-top: 30px;
+}
+
+.NavItem a {
+  text-decoration: none;
+  font-size: large;
+  color: #000;
+}
+
+.NavItem {
+  margin-bottom: 3px;
+}
+.Navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid black;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

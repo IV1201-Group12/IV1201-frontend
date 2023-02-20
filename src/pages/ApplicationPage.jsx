@@ -1,13 +1,12 @@
 import Application from '../components/Application';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
+/**
+ * The route level component mapped to the "/applications/:id" path.
+ */
 const ApplicationPage = () => {
   return (
     <>
-      <Navbar />
       <Application />
-      <Footer />
     </>
   );
 };

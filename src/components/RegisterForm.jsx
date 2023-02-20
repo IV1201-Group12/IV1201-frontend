@@ -108,14 +108,7 @@ export default function RegisterForm() {
           onChange={onChange}
         />
       </form>
-      <button
-        type="button"
-        id="button-input"
-        disabled={
-          !(firstname && lastname && email && pnr && username && password)
-        }
-        onClick={submit}
-      >
+      <button type="button" id="button-input" onClick={submit}>
         Create account
       </button>
     </div>

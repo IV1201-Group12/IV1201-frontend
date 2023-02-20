@@ -10,6 +10,14 @@ const LoginForm = () => {
   const logout = useLogout();
   const { user } = useAuth();
 
+  if (user) {
+    return (
+      <div>
+        <h1 id="logged-in-message">Logged in as {JSON.parse(user).username}</h1>
+      </div>
+    );
+  }
+
   return (
     <div>
       <label>
@@ -39,22 +47,20 @@ const LoginForm = () => {
       <button
         type="submit"
         id="button-input"
-        disabled={!(username && password)}
         onClick={() => login.mutate({ username, password })}
       >
         Login
       </button>
-      {/* TODO */}
-      {user ? (
-        <div>
-          <h1>Logged in as {JSON.parse(user).username}</h1>
-          <button onClick={logout.mutate}>Log Out</button>
-        </div>
+      {login.isError ? (
+        <h1 id="error-message">{login.error.message}</h1>
       ) : (
         <></>
       )}
-      {login.isError || logout.isError ? <h1>{login.error.message}</h1> : <></>}
-      {login.isLoading || logout.isLoading ? <h1>Loading...</h1> : <></>}
+      {login.isLoading || logout.isLoading ? (
+        <h1 id="loading-message">Loading...</h1>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

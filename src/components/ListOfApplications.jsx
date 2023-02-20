@@ -10,7 +10,7 @@ const ListOfApplications = () => {
   }
 
   if (isError) {
-    return <h1>{JSON.stringify(error)}</h1>;
+    return <h1>{error.message}</h1>;
   }
 
   return (
@@ -23,27 +23,23 @@ const ListOfApplications = () => {
         </tr>
       </thead>
       <tbody>
-        {data
-          ? data.map((application, i) => (
-              <tr key={i}>
-                <td>{i + 1}</td>
-                <td>
-                  {application.applicant.firstname}{' '}
-                  {application.applicant.lastname}
-                </td>
-                <td>{application.status}</td>
-                <td>
-                  <button
-                    onClick={() =>
-                      navigate(`/applications/${application.applicant.id}`)
-                    }
-                  >
-                    View Details
-                  </button>
-                </td>
-              </tr>
-            ))
-          : null}
+        {data.map((application, i) => (
+          <tr key={i}>
+            <td>{i + 1}</td>
+            <td>
+              {application?.applicant?.firstname}{' '}
+              {application?.applicant?.lastname}
+            </td>
+            <td>{application?.status}</td>
+            <td>
+              <button
+                onClick={() => navigate(`/applications/${application.id}`)}
+              >
+                View Details
+              </button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
