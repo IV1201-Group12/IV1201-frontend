@@ -1,0 +1,63 @@
+{
+  "translation": {
+    "Loading": "Loading...",
+    "Navbar": {
+      "Register": "Register",
+      "LogIn": "Log in",
+      "Applications": "Applications",
+      "CreateApplication": "Create Application",
+      "LogOut": "Log out"
+    },
+    "Application": {
+      "FirstName": "First name:",
+      "LastName": "Last name:",
+      "Email": "Email:",
+      "Pnr": "Person number:",
+      "Competence": "Competence:",
+      "Experience": "Years of experience:",
+      "AvailableFrom": "Available from:",
+      "AvailableTo": "Available to:",
+      "Accepted": "Accepted",
+      "Rejected": "Rejected",
+      "Unhandled": "Unhandled",
+      "Save": "Save"
+    },
+    "Footer": {
+      "Copyright": "Copyright"
+    },
+    "ListOfApplications": {
+      "Loading": "Loading...",
+      "ApplicantsName": "Applicant's name",
+      "Status": "Status",
+      "ViewDetails": "View Details"
+    },
+    "LoginForm": {
+      "LoggedIn": "Logged in as",
+      "Username": "Username",
+      "Password": "Password",
+      "LogIn": "Log in"
+    },
+    "PrivateRoute": {
+      "DeniedHeader": "Authorization denied",
+      "DeniedBody": "You do not have the required role for this page",
+      "GoBack": "Go back"
+    },
+    "RegisterForm": {
+      "SuccessMessage": "New account created",
+      "FirstName": "First name",
+      "LastName": "Last name",
+      "Email": "Email",
+      "Pnr": "Person number",
+      "Username": "Username",
+      "Password": "Password",
+      "Create": "Create account"
+    },
+    "Errors": {
+      "LackingPermission": "Lacking permission to view that resource",
+      "ServerError": "Server error",
+      "AllFields": "All fields are required",
+      "WrongCredentials": "No user with those credentials",
+      "ConcurrentModification": "The current application is being modified by another user"
+    }
+  }
+}

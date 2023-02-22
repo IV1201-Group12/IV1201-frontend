@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { registerUser } from '../api/auth';
 
 /**
@@ -10,6 +11,7 @@ import { registerUser } from '../api/auth';
  * @returns The wrapped useMutation hook.
  */
 export function useRegister() {
+  const { t } = useTranslation();
   return useMutation({
     mutationFn: async (user) => {
       if (
@@ -27,13 +29,13 @@ export function useRegister() {
       await registerUser(user);
     },
     onError: (error) => {
-      if (error.message === 'All fields are required') {
-        return;
-      }
-      if (error?.response?.status === 400) {
-        error.message = error?.response?.data;
+      if (error.message == 'All fields are required') {
+        error.message = t('Errors.AllFields');
+      } else if (error?.response?.status === 401) {
+        error.message = error.message = t('Errors.WrongCredentials');
       } else {
-        error.message = 'Server error';
+        console.log(error.message);
+        error.message = t('Errors.ServerError');
       }
     },
   });

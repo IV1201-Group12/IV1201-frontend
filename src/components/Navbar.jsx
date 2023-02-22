@@ -1,8 +1,11 @@
 import { useLogout } from '../queryHooks/useLogout';
+import LanguageSwitch from './LanguageSwitch';
 import useAuth from '../context/AuthContext';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
+  const { t } = useTranslation();
   let activeStyle = {
     textDecoration: 'underline',
   };
@@ -17,7 +20,7 @@ const Navbar = () => {
             to="register"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Register
+            {t('Navbar.Register')}
           </NavLink>
         </div>
         <div className="NavItem">
@@ -25,8 +28,11 @@ const Navbar = () => {
             to="login"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Login
+            {t('Navbar.LogIn')}
           </NavLink>
+        </div>
+        <div className="NavItem">
+          <LanguageSwitch />
         </div>
       </div>
     );
@@ -40,21 +46,24 @@ const Navbar = () => {
             to="applications"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Applications
+            {t('Navbar.Applications')}
           </NavLink>
         ) : (
           <NavLink
             to="createApplication"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Create Application
+            {t('Navbar.CreateApplication')}
           </NavLink>
         )}
       </div>
       <div className="NavItem">
         <button className="NavButton" onClick={logout.mutate}>
-          Log Out
+          {t('Navbar.LogOut')}
         </button>
+      </div>
+      <div className="NavItem">
+        <LanguageSwitch />
       </div>
     </div>
   );

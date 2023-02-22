@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useRegister } from '../queryHooks/useRegister';
 
 export default function RegisterForm() {
+  const { t } = useTranslation();
   const { isError, error, isLoading, mutate, isSuccess } = useRegister();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -52,13 +54,13 @@ export default function RegisterForm() {
   };
   return (
     <div>
-      {isLoading ? <h1>Loading...</h1> : null}
+      {isLoading ? <h1>{t('Loading')}</h1> : null}
       {isSuccess ? (
-        <h1 style={{ color: 'green' }}>New account created</h1>
+        <h1 style={{ color: 'green' }}>{t('RegisterForm.SuccessMessage')}</h1>
       ) : null}
       {isError ? <h1 style={{ color: 'red' }}>{error.message} </h1> : null}
       <form>
-        <label htmlFor="firstname">First Name</label>
+        <label htmlFor="firstname">{t('RegisterForm.FirstName')}</label>
         <input
           id="firstname"
           name="firstname"
@@ -66,7 +68,7 @@ export default function RegisterForm() {
           value={firstname}
           onChange={onChange}
         />
-        <label htmlFor="lastname">Last Name</label>
+        <label htmlFor="lastname">{t('RegisterForm.LastName')}</label>
         <input
           id="lastname"
           name="lastname"
@@ -74,7 +76,7 @@ export default function RegisterForm() {
           value={lastname}
           onChange={onChange}
         />
-        <label htmlFor="email">Email Address</label>
+        <label htmlFor="email">{t('RegisterForm.Email')}</label>
         <input
           id="email"
           name="email"
@@ -82,7 +84,7 @@ export default function RegisterForm() {
           value={email}
           onChange={onChange}
         />
-        <label htmlFor="pnr">Person Number</label>
+        <label htmlFor="pnr">{t('RegisterForm.Pnr')}</label>
         <input
           id="pnr"
           name="pnr"
@@ -91,7 +93,7 @@ export default function RegisterForm() {
           placeholder="YYYYMMDDXXXX"
           onChange={onChange}
         />
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">{t('RegisterForm.Username')}</label>
         <input
           id="username"
           name="username"
@@ -99,7 +101,7 @@ export default function RegisterForm() {
           value={username}
           onChange={onChange}
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">{t('RegisterForm.Password')}</label>
         <input
           id="password"
           name="password"
@@ -109,7 +111,7 @@ export default function RegisterForm() {
         />
       </form>
       <button type="button" id="button-input" onClick={submit}>
-        Create account
+        {t('RegisterForm.Create')}
       </button>
     </div>
   );
