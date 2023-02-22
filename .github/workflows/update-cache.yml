@@ -44,7 +44,11 @@ jobs:
             /home/runner/.cache/ms-playwright
           key: ${{ runner.os }}-${{ matrix.project.name }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
-      # Installs binaries and system dependencies for playwright unless it's found in  cache
+      - name: Install Frontend Dependencies
+        run: npm ci
+        working-directory: ./frontend
+
+      # Installs binaries and system dependencies for playwright unless it's found in cache
       - name: Install Playwright Dependencies and Binaries
         run: npx playwright install --with-deps ${{ matrix.project.browser }}
         if: steps.playwright-cache.outputs.cache-hit != 'true'
