@@ -33,7 +33,7 @@ export function useLogin() {
       if (error.message == 'All fields are required') {
         error.message = t('Errors.AllFields');
       } else if (error?.response?.status === 401) {
-        error.message = error.message = t('Errors.WrongCredentials');
+        error.message = t('Errors.WrongCredentials');
       } else {
         console.log(error.message);
         error.message = t('Errors.ServerError');
