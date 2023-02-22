@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getAllApplications } from '../api/applications';
-
+import { useTranslation } from 'react-i18next';
 /**
  * Custom hook wrapping a useQuery hook from React Query (https://www.npmjs.com/package/@tanstack/react-query).
  * The query function is a request for all applications.
@@ -9,14 +9,15 @@ import { getAllApplications } from '../api/applications';
  * @returns The wrapped useQuery hook.
  */
 export function useGetApplications() {
+  const { t } = useTranslation();
   return useQuery({
     queryKey: ['applications'],
     queryFn: () => getAllApplications(),
     onError: (error) => {
       if (error?.response?.status === 403) {
-        error.message = 'Lacking permission to view that resource';
+        error.message = t('Errors.LackingPermission');
       } else {
-        error.message = 'Server error';
+        error.message = t('Errors.ServerError');
       }
     },
   });

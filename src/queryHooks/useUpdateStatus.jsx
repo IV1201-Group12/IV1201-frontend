@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { updateStatusOfApplication } from '../api/applications';
-
+import { useTranslation } from 'react-i18next';
 /**
  * Custom hook wrapping a useMutation hook from React Query (https://www.npmjs.com/package/@tanstack/react-query).
  * The mutation function is a request to update the status of an application with a given id to a given status.
@@ -11,16 +11,16 @@ import { updateStatusOfApplication } from '../api/applications';
  * @returns The wrapped useMutation hook.
  */
 export function useUpdateStatus() {
+  const { t } = useTranslation();
   return useMutation({
     mutationFn: async ({ statusSelected, id, version }) => {
       return await updateStatusOfApplication(statusSelected, id, version);
     },
     onError: (error) => {
       if (error?.response?.status === 409) {
-        error.message =
-          'The current application is being modified by another user';
+        error.message = t('Errors.ConcurrentModification');
       } else {
-        error.message = 'Server error';
+        error.message = t('Errors.ServerError');
       }
     },
   });

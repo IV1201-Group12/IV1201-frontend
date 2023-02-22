@@ -1,3 +1,5 @@
+//React
+import { useEffect } from 'react';
 //External packages
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
@@ -6,6 +8,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useTranslation } from 'react-i18next';
 //Route level components
 import ApplicationsPage from './pages/ApplicationsPage';
 import RegisterPage from './pages/RegisterPage';
@@ -20,8 +23,15 @@ import PrivateRoute from './components/PrivateRoute';
 import useAuth from './context/AuthContext';
 //API
 import { logoutUser } from './api/auth';
-
 function App() {
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    const lng = navigator.language;
+    i18n.changeLanguage(lng);
+  }, []);
+
+  const lng = navigator.language;
+
   //Sets the global behaviour on an error response with a status of 401, logging out the user.
   const { removeCurrentUser } = useAuth();
   const queryClient = new QueryClient({

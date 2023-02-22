@@ -1,12 +1,14 @@
 import { useGetApplications } from '../queryHooks/useGetApplications';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ListOfApplications = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { data, isLoading, isError, error } = useGetApplications();
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1>{t('Loading')}</h1>;
   }
 
   if (isError) {
@@ -18,8 +20,8 @@ const ListOfApplications = () => {
       <thead>
         <tr>
           <th>#</th>
-          <th>Applicants Name</th>
-          <th>Status</th>
+          <th>{t('ListOfApplications.ApplicantsName')}</th>
+          <th>{t('ListOfApplications.Status')}</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +37,7 @@ const ListOfApplications = () => {
               <button
                 onClick={() => navigate(`/applications/${application.id}`)}
               >
-                View Details
+                {t('ListOfApplications.ViewDetails')}
               </button>
             </td>
           </tr>

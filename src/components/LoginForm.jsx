@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useAuth from '../context/AuthContext';
 import { useLogin } from '../queryHooks/useLogin';
 import { useLogout } from '../queryHooks/useLogout';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const login = useLogin();
@@ -13,7 +15,9 @@ const LoginForm = () => {
   if (user) {
     return (
       <div>
-        <h1 id="logged-in-message">Logged in as {JSON.parse(user).username}</h1>
+        <h1 id="logged-in-message">
+          {t('LoginForm.LoggedIn')} {JSON.parse(user).username}
+        </h1>
       </div>
     );
   }
@@ -21,11 +25,11 @@ const LoginForm = () => {
   return (
     <div>
       <label>
-        Username
+        {t('LoginForm.Username')}
         <input
           type="text"
           id="username-input"
-          placeholder="Username"
+          placeholder={t('LoginForm.Username')}
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
@@ -33,11 +37,11 @@ const LoginForm = () => {
       <br />
       <br />
       <label>
-        Password
+        {t('LoginForm.Password')}
         <input
           type="password"
           id="password-input"
-          placeholder="Password"
+          placeholder={t('LoginForm.Password')}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
@@ -49,7 +53,7 @@ const LoginForm = () => {
         id="button-input"
         onClick={() => login.mutate({ username, password })}
       >
-        Login
+        {t('LoginForm.LogIn')}
       </button>
       {login.isError ? (
         <h1 id="error-message">{login.error.message}</h1>
@@ -57,7 +61,7 @@ const LoginForm = () => {
         <></>
       )}
       {login.isLoading || logout.isLoading ? (
-        <h1 id="loading-message">Loading...</h1>
+        <h1 id="loading-message">{t('Loading')}</h1>
       ) : (
         <></>
       )}

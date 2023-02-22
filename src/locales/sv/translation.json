@@ -1,0 +1,62 @@
+{
+  "translation": {
+    "Loading": "Laddar...",
+    "Navbar": {
+      "Register": "Registrera",
+      "Applications": "Ansökningar",
+      "CreateApplication": "Skapa ansökning",
+      "LogOut": "Logga ut",
+      "LogIn": "Logga in"
+    },
+    "Application": {
+      "FirstName": "Förnamn:",
+      "LastName": "Efternamn:",
+      "Email": "Email:",
+      "Pnr": "Personnummer:",
+      "Competence": "Kompetens:",
+      "Experience": "År av erfarenhet:",
+      "AvailableFrom": "Tillgänglig från:",
+      "AvailableTo": "Tillgänglig till:",
+      "Accepted": "Accepterad",
+      "Rejected": "Nekad",
+      "Unhandled": "Ej hanterad",
+      "Save": "Spara"
+    },
+    "Footer": {
+      "Copyright": "Copyright"
+    },
+    "ListOfApplications": {
+      "ApplicantsName": "Sökandes namn",
+      "Status": "Status",
+      "ViewDetails": "Se detaljer"
+    },
+    "LoginForm": {
+      "LoggedIn": "Inloggad som",
+      "Username": "Användarnamn",
+      "Password": "Lösenord",
+      "LogIn": "Logga in"
+    },
+    "PrivateRoute": {
+      "DeniedHeader": "Behörighet nekad",
+      "DeniedBody": "Du har inte den nödvändiga rollen för denna sida",
+      "GoBack": "Gå tillbaka"
+    },
+    "RegisterForm": {
+      "SuccessMessage": "Nytt konto skapat",
+      "FirstName": "Förnamn",
+      "LastName": "Efternamn",
+      "Email": "Email",
+      "Pnr": "Personnummer",
+      "Username": "Användarnamn",
+      "Password": "Lösenord",
+      "Create": "Skapa konto"
+    },
+    "Errors": {
+      "LackingPermission": "Saknar tillåtelse för att se denna resurs",
+      "ServerError": "Serverfel",
+      "AllFields": "Alla fält är nödvändiga",
+      "WrongCredentials": "Ingen användare med dessa uppgifter",
+      "ConcurrentModification": "Den nuvarande ansökan ändras av en annan användare"
+    }
+  }
+}
