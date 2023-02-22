@@ -30,8 +30,6 @@ function App() {
     i18n.changeLanguage(lng);
   }, []);
 
-  const lng = navigator.language;
-
   //Sets the global behaviour on an error response with a status of 401, logging out the user.
   const { removeCurrentUser } = useAuth();
   const queryClient = new QueryClient({
