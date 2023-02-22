@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { logoutUser } from '../api/auth';
 import useAuth from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Custom hook wrapping a useMutation hook from React Query (https://www.npmjs.com/package/@tanstack/react-query).
@@ -12,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
  * @returns The wrapped useMutation hook.
  */
 export function useLogout() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { removeCurrentUser } = useAuth();
 
@@ -23,7 +25,7 @@ export function useLogout() {
     },
     onSuccess: () => navigate('/login'),
     onError: (error) => {
-      error.message = 'Server error';
+      error.message = t('Errors.ServerError');
     },
   });
 }

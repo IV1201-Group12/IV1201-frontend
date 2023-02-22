@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer>
-      <p>Copyright © 2023</p>
+      <p>{t('Footer.Copyright')} © 2023</p>
     </footer>
   );
 };
