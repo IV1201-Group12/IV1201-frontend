@@ -31,10 +31,9 @@ export function useRegister() {
     onError: (error) => {
       if (error.message == 'All fields are required') {
         error.message = t('Errors.AllFields');
-      } else if (error?.response?.status === 401) {
-        error.message = error.message = t('Errors.WrongCredentials');
+      } else if (error?.response?.status === 400) {
+        error.message = error?.response?.data;
       } else {
-        console.log(error.message);
         error.message = t('Errors.ServerError');
       }
     },
