@@ -48,7 +48,7 @@ jobs:
         run: npm ci
         working-directory: ./frontend
 
-      # Installs binaries and system dependencies for playwright unless it's found in cache
+      # Installs binaries and system dependencies for playwright unless it's found in  cache
       - name: Install Playwright Dependencies and Binaries
         run: npx playwright install --with-deps ${{ matrix.project.browser }}
         if: steps.playwright-cache.outputs.cache-hit != 'true'
