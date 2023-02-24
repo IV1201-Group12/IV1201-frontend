@@ -22,5 +22,6 @@ export function useGetApplication(id) {
         error.message = t('Errors.ServerError');
       }
     },
+    refetchOnWindowFocus: false,
   });
 }

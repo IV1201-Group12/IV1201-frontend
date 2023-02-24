@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { useGetApplication } from '../queryHooks/useGetApplication';
 import { useUpdateStatus } from '../queryHooks/useUpdateStatus';
 
 const Application = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const { id } = useParams();
@@ -12,6 +13,12 @@ const Application = () => {
   const updateStatus = useUpdateStatus();
 
   if (getApplication.isLoading) return <h1>{t('Loading')}</h1>;
+
+  if (updateStatus.isSuccess) {
+    setTimeout(() => {
+      navigate('/applications');
+    }, 500);
+  }
 
   if (getApplication.isError) {
     return <h1>{getApplication.error.message}</h1>;
