@@ -47,6 +47,7 @@ module.exports = defineConfig({
       name: 'edge',
       use: { ...devices['Desktop Edge'] },
     },
+
     {
       name: 'chrome',
       use: { ...devices['Desktop Chrome'] },
