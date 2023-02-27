@@ -11,8 +11,11 @@
   height: 100%;
   align-items: center;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
-
+.subContainer {
+  text-align: center;
+}
 .NavItem a {
   text-decoration: none;
   font-size: large;
@@ -36,4 +39,8 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+
+.PnrInput:invalid {
+  background-color: red;
 }

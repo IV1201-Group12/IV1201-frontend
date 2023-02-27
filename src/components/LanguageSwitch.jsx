@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 const LanguageSwitch = () => {
@@ -6,6 +7,7 @@ const LanguageSwitch = () => {
     en: { name: 'English' },
     sv: { name: 'Svenska' },
   };
+
   return (
     <div>
       {Object.keys(languages).map((language) => (

@@ -24,6 +24,8 @@ export function useRegister() {
           user.password
         )
       ) {
+        console.log(user);
+
         throw Error('All fields are required');
       }
       await registerUser(user);
@@ -32,7 +34,26 @@ export function useRegister() {
       if (error.message == 'All fields are required') {
         error.message = t('Errors.AllFields');
       } else if (error?.response?.status === 400) {
-        error.message = error?.response?.data;
+        const response = error.response.data;
+        if (response === 'email must be unique') {
+          error.message = t('Errors.NonUniqueEmail');
+        } else if (response === 'pnr must be unique') {
+          error.message = t('Errors.NonUniquePnr');
+        } else if (response === 'username must be unique') {
+          error.message = t('Errors.NonUniqueUsername');
+        } else if (response === 'Username is not valid') {
+          error.message = t('Errors.InvalidUsername');
+        } else if (response === 'Firstname is not valid') {
+          error.message = t('Errors.InvalidFirstName');
+        } else if (response === 'Lastname is not valid') {
+          error.message = t('Errors.InvallidLastName');
+        } else if (response === 'Email is not valid') {
+          error.message = t('Errors.InvalidEmail');
+        } else if (response === 'Pnr is not valid') {
+          error.message = t('Errors.InvalidPnr');
+        } else if (response == 'Password is not valid') {
+          error.message = t('Errors.InvalidPassword');
+        }
       } else {
         error.message = t('Errors.ServerError');
       }

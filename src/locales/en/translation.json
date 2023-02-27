@@ -20,7 +20,10 @@
       "Accepted": "Accepted",
       "Rejected": "Rejected",
       "Unhandled": "Unhandled",
-      "Save": "Save"
+      "Save": "Save",
+      "Lotteries": "lotteries",
+      "RollerCoaster": "roller coaster operation",
+      "Tickets": "ticket sales"
     },
     "Footer": {
       "Copyright": "Copyright"
@@ -57,7 +60,16 @@
       "ServerError": "Server error",
       "AllFields": "All fields are required",
       "WrongCredentials": "No user with those credentials",
-      "ConcurrentModification": "The current application is being modified by another user"
+      "ConcurrentModification": "The current application is being modified by another user",
+      "NonUniqueEmail": "That email is already in use",
+      "NonUniqueUsername": "That username is already in use",
+      "NonUniquePnr": "That person number is already in use",
+      "InvalidUsername": "That is not a valid username, it needs to be at least 4 characters long",
+      "InvalidPnr": "That is not a valid person number",
+      "InvalidFirstName": "That is not a valid first name",
+      "InvallidLastName": "That is not a valid last name",
+      "InvalidEmail": "That is not a valid email",
+      "InvalidPassword": "That is not a valid password, it needs to be at least 4 characters long"
     }
   }
 }

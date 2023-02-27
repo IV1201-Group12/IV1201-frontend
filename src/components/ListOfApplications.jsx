@@ -25,14 +25,20 @@ const ListOfApplications = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((application, i) => (
-          <tr key={i}>
-            <td>{i + 1}</td>
+        {data.map((application) => (
+          <tr key={application.id}>
+            <td>{application.id}</td>
             <td>
               {application?.applicant?.firstname}{' '}
               {application?.applicant?.lastname}
             </td>
-            <td>{application?.status}</td>
+            <td>
+              {application?.status === 'unhandled'
+                ? t('Application.Unhandled')
+                : application?.status === 'accepted'
+                ? t('Application.Accepted')
+                : t('Application.Rejected')}
+            </td>
             <td>
               <button
                 onClick={() => navigate(`/applications/${application.id}`)}

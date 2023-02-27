@@ -50,7 +50,7 @@ const Navbar = () => {
           </NavLink>
         ) : (
           <NavLink
-            to="createApplication"
+            to="register"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             {t('Navbar.CreateApplication')}
