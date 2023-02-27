@@ -24,12 +24,6 @@ import useAuth from './context/AuthContext';
 //API
 import { logoutUser } from './api/auth';
 function App() {
-  const { i18n } = useTranslation();
-  useEffect(() => {
-    const lng = navigator.language;
-    i18n.changeLanguage(lng);
-  }, []);
-
   //Sets the global behaviour on an error response with a status of 401, logging out the user.
   const { removeCurrentUser } = useAuth();
   const queryClient = new QueryClient({
