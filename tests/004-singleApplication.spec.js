@@ -21,7 +21,7 @@ test('displays all information correct', async ({ page }) => {
   expect(await h1Elements[3].textContent()).toBe('Person number: 123456789019');
   expect(await h1Elements[4].textContent()).toBe('Competence: ticket sales');
   expect(await h1Elements[5].textContent()).toBe('Years of experience: 2');
-  expect(await h1Elements[6].textContent()).toBe('Available from: 2023-05-01');
-  expect(await h1Elements[7].textContent()).toBe('Available to: 2023-06-01');
+  expect(await h1Elements[6].textContent()).toBe('Available from: 2022-05-01');
+  expect(await h1Elements[7].textContent()).toBe('Available to: 2022-06-01');
   expect(currentValue).toBe('unhandled');
 });

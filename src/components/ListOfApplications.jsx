@@ -26,7 +26,7 @@ const ListOfApplications = () => {
       </thead>
       <tbody>
         {data.map((application) => (
-          <tr key={application.id}>
+          <tr id="application" key={application.id}>
             <td>{application.id}</td>
             <td>
               {application?.applicant?.firstname}{' '}
