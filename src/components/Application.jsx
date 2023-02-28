@@ -57,9 +57,14 @@ const Application = () => {
         </h1>
         {getApplication.data?.competences.map((competence, index) => {
           return (
-            <div key={index}>
+            <div className="subContainer" key={index}>
               <h1>
-                {t('Application.Competence')} {competence?.name}
+                {t('Application.Competence')}{' '}
+                {competence?.name === 'roller coaster operation'
+                  ? t('Application.RollerCoaster')
+                  : competence?.name === 'ticket sales'
+                  ? t('Application.Tickets')
+                  : t('Application.Lotteries')}
               </h1>
               <h1>
                 {t('Application.Experience')} {competence?.years_of_experience}
@@ -69,7 +74,7 @@ const Application = () => {
         })}
         {getApplication.data?.availabilities.map((availability, index) => {
           return (
-            <div key={index}>
+            <div className="subContainer" key={index}>
               <h1>
                 {t('Application.AvailableFrom')} {availability?.from_date}
               </h1>

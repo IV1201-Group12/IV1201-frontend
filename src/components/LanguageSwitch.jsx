@@ -6,6 +6,7 @@ const LanguageSwitch = () => {
     en: { name: 'English' },
     sv: { name: 'Svenska' },
   };
+
   return (
     <div>
       {Object.keys(languages).map((language) => (

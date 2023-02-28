@@ -42,7 +42,7 @@ The components layer contains the building blocks for the UI. The components can
 
 #### QueryHooks
 
-This layer is used as an abstraction for displaying data queried from the backend API conditionally. It contains definitions for custom hooks that can be used for this purpose and is implemented using the ReactQuery framework.
+This layer is used as an abstraction for displaying data queried from the backend API conditionally. The behaviour regarding when the queries should be performed and how the requested data should be cached is declared here. It contains definitions for custom hooks that can be used for this purpose and is implemented using the ReactQuery framework.
 
 #### Api
 
@@ -50,7 +50,8 @@ This layer uses Axios to package api requests that can be used by the queryhooks
 
 #### Context
 
-This layer is used to contain contextual components, e.g. authorization. It can be used to keep track of the applications current context. For example if the user is logged in or not.
+This layer contains components implementing React's Context functionality. It allows for the sharing of application state between components without passing props.
+It is used for keeping track of the currently logged in user and for storing and fetching this information from local storage.
 
 #### Locales
 

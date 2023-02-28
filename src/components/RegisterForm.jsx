@@ -86,6 +86,7 @@ export default function RegisterForm() {
         />
         <label htmlFor="pnr">{t('RegisterForm.Pnr')}</label>
         <input
+          className="PnrInput"
           id="pnr"
           name="pnr"
           type="number"

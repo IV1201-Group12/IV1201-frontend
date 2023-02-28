@@ -20,7 +20,10 @@
       "Accepted": "Accepterad",
       "Rejected": "Nekad",
       "Unhandled": "Ej hanterad",
-      "Save": "Spara"
+      "Save": "Spara",
+      "Lotteries": "Lotteri",
+      "RollerCoaster": "Operation av berg- och dalbana",
+      "Tickets": "Biljetter"
     },
     "Footer": {
       "Copyright": "Copyright"
@@ -56,7 +59,16 @@
       "ServerError": "Serverfel",
       "AllFields": "Alla fält är nödvändiga",
       "WrongCredentials": "Ingen användare med dessa uppgifter",
-      "ConcurrentModification": "Den nuvarande ansökan ändras av en annan användare"
+      "ConcurrentModification": "Den nuvarande ansökan ändras av en annan användare",
+      "NonUniqueEmail": "Den emailen används redan",
+      "NonUniqueUsername": "Det användarnamnet används redan",
+      "NonUniquePnr": "Det personnummret används redan",
+      "InvalidUsername": "Det användarnamnet är inte giltigt, det måste vara minst 4 karaktärer långt.",
+      "InvalidPnr": "Det personnummret är inte giltigt",
+      "InvalidFirstName": "Det förnamnet är inte giltigt",
+      "InvallidLastName": "Det efternamnet är inte giltigt",
+      "InvalidEmail": "Den emailen är inte giltig",
+      "InvalidPassword": "Det lösenordet är inte giltigt, det måste vara minst 4 karaktärer långt"
     }
   }
 }
