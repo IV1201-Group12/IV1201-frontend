@@ -1,3 +1,8 @@
+/**
+ * Component used to display a list of all applications with minimal details for each entry.
+ * Also allows clicking any entry to see more information.
+ */
+
 import { useGetApplications } from '../queryHooks/useGetApplications';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';

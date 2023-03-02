@@ -1,3 +1,7 @@
+/**
+ * Configuration options used by the api.
+ */
+
 let baseURL;
 if (process.env.NODE_ENV === 'development') {
   baseURL = `http://${import.meta.env.VITE_BACKEND_HOST}:${

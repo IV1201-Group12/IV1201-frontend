@@ -1,3 +1,8 @@
+/**
+ * This module exports the axios functions used to send requests to the application endpoint
+ * on the backend
+ */
+
 import axios from 'axios';
 import { apiConfig } from '../config/api-config';
 
@@ -31,6 +36,14 @@ export async function getApplication(id) {
   return data;
 }
 
+/**
+ * Send a PUT request to the application endpoint on a specific id
+ * with a new status to give it.
+ * @param {*} status The new status of the application
+ * @param {*} id The id of the application to update
+ * @param {*} version The version of the application to update
+ * @returns The newly modified application
+ */
 export async function updateStatusOfApplication(status, id, version) {
   const response = await applicationsApi.put(`/${id}`, { status, id, version });
   return response;

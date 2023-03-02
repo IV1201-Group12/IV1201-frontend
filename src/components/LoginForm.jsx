@@ -1,3 +1,7 @@
+/**
+ * A form component used to send a login request.
+ */
+
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../context/AuthContext';
