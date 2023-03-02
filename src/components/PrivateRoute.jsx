@@ -1,3 +1,9 @@
+/**
+ * A component that is used to wrap other components to make them private, meaning they
+ * can't be accessed without the authorization. Either redirects unaothorized access or
+ * displays an unauthorized message page.
+ */
+
 import { useTranslation } from 'react-i18next';
 import { Navigate, useNavigate } from 'react-router-dom';
 import useAuth from '../context/AuthContext';

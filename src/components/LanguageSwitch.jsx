@@ -1,3 +1,7 @@
+/**
+ * Component used to control the current display language.
+ */
+
 import { useTranslation } from 'react-i18next';
 
 const LanguageSwitch = () => {

@@ -1,3 +1,7 @@
+/**
+ * A form component used to send a register requests to the backend in order to create an account.
+ */
+
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
