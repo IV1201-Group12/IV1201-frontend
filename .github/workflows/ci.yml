@@ -113,7 +113,7 @@ jobs:
         env:
           DEBUG: pw:browser*
           VITE_BACKEND_PORT: ${{ matrix.project.port }}
-          VITE_BACKEND_HOST: '127.0.0.1'
+          VITE_BACKEND_HOST: 'localhost'
         working-directory: ./frontend
 
       - uses: actions/upload-artifact@v3
