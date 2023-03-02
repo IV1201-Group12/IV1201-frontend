@@ -1,3 +1,8 @@
+/**
+ * A component used to display a navbar that contains different controls depending on the
+ * context of the application.
+ */
+
 import { useLogout } from '../queryHooks/useLogout';
 import LanguageSwitch from './LanguageSwitch';
 import useAuth from '../context/AuthContext';
@@ -50,7 +55,7 @@ const Navbar = () => {
           </NavLink>
         ) : (
           <NavLink
-            to="createApplication"
+            to="register"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             {t('Navbar.CreateApplication')}

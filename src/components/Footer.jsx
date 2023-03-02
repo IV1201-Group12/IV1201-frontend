@@ -1,3 +1,7 @@
+/**
+ * Component used to display a footer.
+ */
+
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {

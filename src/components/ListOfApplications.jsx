@@ -1,3 +1,8 @@
+/**
+ * Component used to display a list of all applications with minimal details for each entry.
+ * Also allows clicking any entry to see more information.
+ */
+
 import { useGetApplications } from '../queryHooks/useGetApplications';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -25,14 +30,20 @@ const ListOfApplications = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((application, i) => (
-          <tr key={i}>
-            <td>{i + 1}</td>
+        {data.map((application) => (
+          <tr id="application" key={application.id}>
+            <td>{application.id}</td>
             <td>
               {application?.applicant?.firstname}{' '}
               {application?.applicant?.lastname}
             </td>
-            <td>{application?.status}</td>
+            <td>
+              {application?.status === 'unhandled'
+                ? t('Application.Unhandled')
+                : application?.status === 'accepted'
+                ? t('Application.Accepted')
+                : t('Application.Rejected')}
+            </td>
             <td>
               <button
                 onClick={() => navigate(`/applications/${application.id}`)}

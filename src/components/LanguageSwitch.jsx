@@ -1,3 +1,7 @@
+/**
+ * Component used to control the current display language.
+ */
+
 import { useTranslation } from 'react-i18next';
 
 const LanguageSwitch = () => {
@@ -6,6 +10,7 @@ const LanguageSwitch = () => {
     en: { name: 'English' },
     sv: { name: 'Svenska' },
   };
+
   return (
     <div>
       {Object.keys(languages).map((language) => (

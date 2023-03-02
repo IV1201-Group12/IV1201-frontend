@@ -1,3 +1,7 @@
+/**
+ * A form component used to send a register requests to the backend in order to create an account.
+ */
+
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -86,6 +90,7 @@ export default function RegisterForm() {
         />
         <label htmlFor="pnr">{t('RegisterForm.Pnr')}</label>
         <input
+          className="PnrInput"
           id="pnr"
           name="pnr"
           type="number"

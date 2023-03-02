@@ -1,10 +1,15 @@
-import { useParams } from 'react-router-dom';
+/**
+ * Component used in the view to display detailed information for a single application.
+ */
+
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { useGetApplication } from '../queryHooks/useGetApplication';
 import { useUpdateStatus } from '../queryHooks/useUpdateStatus';
 
 const Application = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const { id } = useParams();
@@ -12,6 +17,12 @@ const Application = () => {
   const updateStatus = useUpdateStatus();
 
   if (getApplication.isLoading) return <h1>{t('Loading')}</h1>;
+
+  if (updateStatus.isSuccess) {
+    setTimeout(() => {
+      navigate('/applications');
+    }, 500);
+  }
 
   if (getApplication.isError) {
     return <h1>{getApplication.error.message}</h1>;
@@ -50,9 +61,14 @@ const Application = () => {
         </h1>
         {getApplication.data?.competences.map((competence, index) => {
           return (
-            <div key={index}>
+            <div className="subContainer" key={index}>
               <h1>
-                {t('Application.Competence')} {competence?.name}
+                {t('Application.Competence')}{' '}
+                {competence?.name === 'roller coaster operation'
+                  ? t('Application.RollerCoaster')
+                  : competence?.name === 'ticket sales'
+                  ? t('Application.Tickets')
+                  : t('Application.Lotteries')}
               </h1>
               <h1>
                 {t('Application.Experience')} {competence?.years_of_experience}
@@ -62,7 +78,7 @@ const Application = () => {
         })}
         {getApplication.data?.availabilities.map((availability, index) => {
           return (
-            <div key={index}>
+            <div className="subContainer" key={index}>
               <h1>
                 {t('Application.AvailableFrom')} {availability?.from_date}
               </h1>

@@ -1,3 +1,8 @@
+/**
+ * This module exports the axios functions used to send requests to the auth endpoint
+ * on the backend
+ */
+
 import axios from 'axios';
 import { apiConfig } from '../config/api-config';
 

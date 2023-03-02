@@ -1,3 +1,8 @@
+/**
+ * This module provides the authorization context which keeps track of the state of
+ * a users session on the application.
+ */
+
 import { createContext, useContext, useEffect, useState } from 'react';
 
 //Creating the AuthContext
