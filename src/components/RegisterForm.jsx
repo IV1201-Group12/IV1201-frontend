@@ -9,7 +9,7 @@ import { useRegister } from '../queryHooks/useRegister';
 
 export default function RegisterForm() {
   const { t } = useTranslation();
-  const { isError, error, isLoading, mutate, isSuccess } = useRegister();
+  const { isLoading, mutate } = useRegister();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -59,10 +59,6 @@ export default function RegisterForm() {
   return (
     <div>
       {isLoading ? <h1>{t('Loading')}</h1> : null}
-      {isSuccess ? (
-        <h1 style={{ color: 'green' }}>{t('RegisterForm.SuccessMessage')}</h1>
-      ) : null}
-      {isError ? <h1 style={{ color: 'red' }}>{error.message} </h1> : null}
       <form>
         <label htmlFor="firstname">{t('RegisterForm.FirstName')}</label>
         <input

@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   const applicationsLink = await page.waitForSelector(
     'a[href="/applications"]',
   );
-  await page.waitForTimeout(4000);
+  await page.waitForTimeout(3000);
   await applicationsLink.click();
 });
 
@@ -17,5 +17,13 @@ test('displays a list of applications when data is fetched successfully', async 
 }) => {
   await page.waitForSelector('td', { textContent: '1' });
   const tdElements = await page.$$('td');
-  expect(tdElements.length).toBe(4);
+  expect(tdElements.length).toBe(8);
+  expect(await tdElements[0].textContent()).toBe('1');
+  expect(await tdElements[1].textContent()).toBe('test lastname');
+  expect(await tdElements[2].textContent()).toBe('Unhandled');
+  expect(await tdElements[3].textContent()).toBe('View Details');
+  expect(await tdElements[4].textContent()).toBe('2');
+  expect(await tdElements[5].textContent()).toBe('test lastname2');
+  expect(await tdElements[6].textContent()).toBe('Unhandled');
+  expect(await tdElements[7].textContent()).toBe('View Details');
 });

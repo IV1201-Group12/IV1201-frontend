@@ -53,14 +53,7 @@ const Navbar = () => {
           >
             {t('Navbar.Applications')}
           </NavLink>
-        ) : (
-          <NavLink
-            to="register"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            {t('Navbar.CreateApplication')}
-          </NavLink>
-        )}
+        ) : null}
       </div>
       <div className="NavItem">
         <button className="NavButton" onClick={logout.mutate}>

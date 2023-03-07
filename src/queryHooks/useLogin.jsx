@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { loginUser } from '../api/auth';
 import useAuth from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 /**
  * Custom hook wrapping a useMutation hook from React Query (https://www.npmjs.com/package/@tanstack/react-query).
@@ -31,12 +32,11 @@ export function useLogin() {
     },
     onError: (error) => {
       if (error.message == 'All fields are required') {
-        error.message = t('Errors.AllFields');
+        toast.error(t('Errors.AllFields'));
       } else if (error?.response?.status === 401) {
-        error.message = t('Errors.WrongCredentials');
+        toast.error(t('Errors.WrongCredentials'));
       } else {
-        console.log(error.message);
-        error.message = t('Errors.ServerError');
+        toast.error(t('Errors.ServerError'));
       }
     },
   });

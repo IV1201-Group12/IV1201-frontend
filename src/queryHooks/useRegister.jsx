@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { registerUser } from '../api/auth';
-
+import toast from 'react-hot-toast';
 /**
  * Custom hook wrapping a useMutation hook from React Query (https://www.npmjs.com/package/@tanstack/react-query).
  * The mutation function is a request to register a user with the given information.
@@ -24,38 +24,39 @@ export function useRegister() {
           user.password
         )
       ) {
-        console.log(user);
-
         throw Error('All fields are required');
       }
       await registerUser(user);
     },
+    onSuccess: () => {
+      toast.success(t('RegisterForm.SuccessMessage'));
+    },
     onError: (error) => {
       if (error.message == 'All fields are required') {
-        error.message = t('Errors.AllFields');
+        toast.error(t('Errors.AllFields'));
       } else if (error?.response?.status === 400) {
         const response = error.response.data;
         if (response === 'email must be unique') {
-          error.message = t('Errors.NonUniqueEmail');
+          toast.error(t('Errors.NonUniqueEmail'));
         } else if (response === 'pnr must be unique') {
-          error.message = t('Errors.NonUniquePnr');
+          toast.error(t('Errors.NonUniquePnr'));
         } else if (response === 'username must be unique') {
-          error.message = t('Errors.NonUniqueUsername');
+          toast.error(t('Errors.NonUniqueUsername'));
         } else if (response === 'Username is not valid') {
-          error.message = t('Errors.InvalidUsername');
+          toast.error(t('Errors.InvalidUsername'));
         } else if (response === 'Firstname is not valid') {
-          error.message = t('Errors.InvalidFirstName');
+          toast.error(t('Errors.InvalidFirstName'));
         } else if (response === 'Lastname is not valid') {
-          error.message = t('Errors.InvallidLastName');
+          toast.error(t('Errors.InvalidLastName'));
         } else if (response === 'Email is not valid') {
-          error.message = t('Errors.InvalidEmail');
+          toast.error(t('Errors.InvalidEmail'));
         } else if (response === 'Pnr is not valid') {
-          error.message = t('Errors.InvalidPnr');
+          toast.error(t('Errors.InvalidPnr'));
         } else if (response == 'Password is not valid') {
-          error.message = t('Errors.InvalidPassword');
+          toast.error(t('Errors.InvalidPassword'));
         }
       } else {
-        error.message = t('Errors.ServerError');
+        toast.error(t('Errors.ServerError'));
       }
     },
   });
