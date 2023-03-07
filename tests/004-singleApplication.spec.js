@@ -18,7 +18,7 @@ test('displays all information correct', async ({ page }) => {
   expect(await h1Elements[0].textContent()).toBe('First name: test');
   expect(await h1Elements[1].textContent()).toBe('Last name: lastname');
   expect(await h1Elements[2].textContent()).toBe('Email: email@email.com');
-  expect(await h1Elements[3].textContent()).toBe('Person number: 123456789019');
+  expect(await h1Elements[3].textContent()).toBe('Person number: 111111111125');
   expect(await h1Elements[4].textContent()).toBe('Competence: ticket sales');
   expect(await h1Elements[5].textContent()).toBe('Years of experience: 2');
   expect(await h1Elements[6].textContent()).toBe('Available from: 2024-05-01');
