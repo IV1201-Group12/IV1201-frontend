@@ -59,11 +59,6 @@ const LoginForm = () => {
       >
         {t('LoginForm.LogIn')}
       </button>
-      {/* {login.isError ? (
-        <h1 id="error-message">{login.error.message}</h1>
-      ) : (
-        <></>
-      )} */}
       {login.isLoading || logout.isLoading ? (
         <h1 id="loading-message">{t('Loading')}</h1>
       ) : (
