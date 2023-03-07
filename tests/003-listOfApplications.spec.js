@@ -23,7 +23,7 @@ test('displays a list of applications when data is fetched successfully', async 
   expect(await tdElements[2].textContent()).toBe('Unhandled');
   expect(await tdElements[3].textContent()).toBe('View Details');
   expect(await tdElements[4].textContent()).toBe('2');
-  expect(await tdElements[5].textContent()).toBe('test2 lastname2');
+  expect(await tdElements[5].textContent()).toBe('test lastname2');
   expect(await tdElements[6].textContent()).toBe('Unhandled');
   expect(await tdElements[7].textContent()).toBe('View Details');
 });
