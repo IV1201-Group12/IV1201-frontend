@@ -8,6 +8,10 @@
       "CreateApplication": "Create Application",
       "LogOut": "Log out"
     },
+    "LandingPage": {
+      "Header": "Recruitment Application",
+      "Body": "Welcome to the recruitment page for the amusement park. Log in as a recruiter to view existing applications, or register as an applicant."
+    },
     "Application": {
       "FirstName": "First name:",
       "LastName": "Last name:",
@@ -69,7 +73,9 @@
       "InvalidFirstName": "That is not a valid first name",
       "InvallidLastName": "That is not a valid last name",
       "InvalidEmail": "That is not a valid email",
-      "InvalidPassword": "That is not a valid password, it needs to be at least 4 characters long"
+      "InvalidPassword": "That is not a valid password, it needs to be at least 4 characters long",
+      "InvalidStatus": "The status must either be unhandled, rejected or accepted",
+      "InvalidVersion": "An error occurred, try refreshing the page"
     }
   }
 }

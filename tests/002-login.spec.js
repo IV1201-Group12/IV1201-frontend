@@ -25,11 +25,8 @@ test('it displays an appropriate error message if a field is missing', async ({
 }) => {
   await page.fill('input[id=password-input]', 'secretpassword');
   await page.click('button[id=button-input]');
-  await page.waitForSelector('h1[id=error-message]');
-  const errorMessage = await page.$eval(
-    'h1[id=error-message]',
-    (el) => el.textContent,
-  );
+  await page.waitForSelector('.Toast');
+  const errorMessage = await page.$eval('.Toast', (el) => el.textContent);
   expect(errorMessage).toBe('All fields are required');
 });
 
@@ -39,10 +36,7 @@ test('it displays an appropriate error message if the credentials are not correc
   await page.fill('input[id=username-input]', 'johndoe');
   await page.fill('input[id=password-input]', 'secretpassword123');
   await page.click('button[id=button-input]');
-  await page.waitForSelector('h1[id=error-message]');
-  const errorMessage = await page.$eval(
-    'h1[id=error-message]',
-    (el) => el.textContent,
-  );
+  await page.waitForSelector('.Toast');
+  const errorMessage = await page.$eval('.Toast', (el) => el.textContent);
   expect(errorMessage).toBe('No user with those credentials');
 });

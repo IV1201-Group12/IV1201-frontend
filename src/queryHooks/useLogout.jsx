@@ -3,6 +3,7 @@ import { logoutUser } from '../api/auth';
 import useAuth from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 /**
  * Custom hook wrapping a useMutation hook from React Query (https://www.npmjs.com/package/@tanstack/react-query).
@@ -25,7 +26,7 @@ export function useLogout() {
     },
     onSuccess: () => navigate('/login'),
     onError: (error) => {
-      error.message = t('Errors.ServerError');
+      toast.error(t('Errors.ServerError'));
     },
   });
 }

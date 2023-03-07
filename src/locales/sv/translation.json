@@ -8,6 +8,10 @@
       "LogOut": "Logga ut",
       "LogIn": "Logga in"
     },
+    "LandingPage": {
+      "Header": "Rekryteringsapplikation",
+      "Body": "Välkommen till rekryteringssidan för nöjesparken. Logga in som rekrytera för att se existerande applikationer, eller registrera dig som ansökande."
+    },
     "Application": {
       "FirstName": "Förnamn:",
       "LastName": "Efternamn:",
@@ -68,7 +72,9 @@
       "InvalidFirstName": "Det förnamnet är inte giltigt",
       "InvallidLastName": "Det efternamnet är inte giltigt",
       "InvalidEmail": "Den emailen är inte giltig",
-      "InvalidPassword": "Det lösenordet är inte giltigt, det måste vara minst 4 karaktärer långt"
+      "InvalidPassword": "Det lösenordet är inte giltigt, det måste vara minst 4 karaktärer långt",
+      "InvalidStatus": "Statusen måste vara antingen accepterad, nekad eller ej hanterad",
+      "InvalidVersion": "Ett fel uppstod, testa att uppdatera sidan"
     }
   }
 }

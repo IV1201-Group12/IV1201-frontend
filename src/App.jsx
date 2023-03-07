@@ -1,5 +1,6 @@
 //External packages
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import {
   QueryCache,
   QueryClient,
@@ -60,6 +61,12 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
+          <Toaster
+            toastOptions={{
+              className: 'Toast',
+              duration: 3000,
+            }}
+          />
         </div>
         <Footer />
       </Router>
