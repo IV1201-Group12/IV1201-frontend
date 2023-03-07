@@ -9,7 +9,7 @@ import { useRegister } from '../queryHooks/useRegister';
 
 export default function RegisterForm() {
   const { t } = useTranslation();
-  const { isError, error, isLoading, mutate, isSuccess } = useRegister();
+  const { isLoading, mutate } = useRegister();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');

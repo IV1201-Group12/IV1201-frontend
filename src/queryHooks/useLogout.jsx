@@ -25,7 +25,7 @@ export function useLogout() {
       return result.data;
     },
     onSuccess: () => navigate('/login'),
-    onError: (error) => {
+    onError: () => {
       toast.error(t('Errors.ServerError'));
     },
   });
