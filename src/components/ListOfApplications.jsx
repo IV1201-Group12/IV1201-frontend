@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next';
 const ListOfApplications = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { data, isLoading, isError, error } = useGetApplications();
+  const { data, isLoading, isError, error, isFetching } = useGetApplications();
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <h1>{t('Loading')}</h1>;
   }
 

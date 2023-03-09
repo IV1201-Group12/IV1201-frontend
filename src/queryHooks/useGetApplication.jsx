@@ -14,7 +14,7 @@ import toast from 'react-hot-toast';
 export function useGetApplication(id) {
   const { t } = useTranslation();
   return useQuery({
-    queryKey: ['application'],
+    queryKey: ['applications', id],
     queryFn: () => getApplication(id),
     onError: (error) => {
       if (error?.response?.status === 403) {

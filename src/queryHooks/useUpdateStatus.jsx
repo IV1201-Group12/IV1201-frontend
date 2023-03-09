@@ -14,6 +14,7 @@ import toast from 'react-hot-toast';
  */
 export function useUpdateStatus() {
   const { t } = useTranslation();
+
   return useMutation({
     mutationFn: async ({ statusSelected, id, version }) => {
       return await updateStatusOfApplication(statusSelected, id, version);
