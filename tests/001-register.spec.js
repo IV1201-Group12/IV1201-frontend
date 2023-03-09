@@ -17,12 +17,6 @@ test('it can create an account successfully and display a confirmation message i
   await page.fill('input[name=password]', 'secretpassword');
   await page.click('button[id=button-input]');
   await page.waitForSelector('.Toast');
-
-  // await page.waitForSelector('h1[style="color: green;"]');
-  // const successMessage = await page.$eval(
-  //   'h1[style="color: green;"]',
-  //   (el) => el.textContent,
-  // );
   const successMessage = await page.$eval('.Toast', (el) => el.textContent);
 
   expect(successMessage).toBe('New account created');

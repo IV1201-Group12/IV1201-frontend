@@ -1,4 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { updateStatusOfApplication } from '../api/applications';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
@@ -14,6 +15,9 @@ import toast from 'react-hot-toast';
  */
 export function useUpdateStatus() {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
   return useMutation({
     mutationFn: async ({ statusSelected, id, version }) => {
       return await updateStatusOfApplication(statusSelected, id, version);
@@ -31,6 +35,10 @@ export function useUpdateStatus() {
       } else {
         toast.error(t('Errors.ServerError'));
       }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['applications'] });
+      // navigate('/applications');
     },
   });
 }

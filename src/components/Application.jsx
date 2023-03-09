@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useGetApplication } from '../queryHooks/useGetApplication';
 import { useUpdateStatus } from '../queryHooks/useUpdateStatus';
+import { useEffect } from 'react';
 
 const Application = () => {
   const navigate = useNavigate();
@@ -16,13 +17,13 @@ const Application = () => {
   const getApplication = useGetApplication(id);
   const updateStatus = useUpdateStatus();
 
-  if (getApplication.isLoading) return <h1>{t('Loading')}</h1>;
-
-  if (updateStatus.isSuccess) {
-    setTimeout(() => {
+  useEffect(() => {
+    if (updateStatus.isSuccess) {
       navigate('/applications');
-    }, 500);
-  }
+    }
+  }, [updateStatus, navigate]);
+
+  if (getApplication.isLoading) return <h1>{t('Loading')}</h1>;
 
   if (getApplication.isError) {
     return <h1>{getApplication.error.message}</h1>;
