@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getApplication } from '../api/applications';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';

@@ -23,7 +23,8 @@ const Application = () => {
     }
   }, [updateStatus, navigate]);
 
-  if (getApplication.isLoading) return <h1>{t('Loading')}</h1>;
+  if (getApplication.isLoading || getApplication.isFetching)
+    return <h1>{t('Loading')}</h1>;
 
   if (getApplication.isError) {
     return <h1>{getApplication.error.message}</h1>;
