@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next';
 const ListOfApplications = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { data, isLoading, isError, error } = useGetApplications();
+  const { data, isLoading, isError, error, isFetching } = useGetApplications();
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <h1>{t('Loading')}</h1>;
   }
 
@@ -30,29 +30,31 @@ const ListOfApplications = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((application) => (
-          <tr id="application" key={application.id}>
-            <td>{application.id}</td>
-            <td>
-              {application?.applicant?.firstname}{' '}
-              {application?.applicant?.lastname}
-            </td>
-            <td>
-              {application?.status === 'unhandled'
-                ? t('Application.Unhandled')
-                : application?.status === 'accepted'
-                ? t('Application.Accepted')
-                : t('Application.Rejected')}
-            </td>
-            <td>
-              <button
-                onClick={() => navigate(`/applications/${application.id}`)}
-              >
-                {t('ListOfApplications.ViewDetails')}
-              </button>
-            </td>
-          </tr>
-        ))}
+        {data
+          .sort((a, b) => a.id > b.id)
+          .map((application) => (
+            <tr id="application" key={application.id}>
+              <td>{application.id}</td>
+              <td>
+                {application?.applicant?.firstname}{' '}
+                {application?.applicant?.lastname}
+              </td>
+              <td>
+                {application?.status === 'unhandled'
+                  ? t('Application.Unhandled')
+                  : application?.status === 'accepted'
+                  ? t('Application.Accepted')
+                  : t('Application.Rejected')}
+              </td>
+              <td>
+                <button
+                  onClick={() => navigate(`/applications/${application.id}`)}
+                >
+                  {t('ListOfApplications.ViewDetails')}
+                </button>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );

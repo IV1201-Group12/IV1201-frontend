@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getApplication } from '../api/applications';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 /**
  * Custom hook wrapping a useQuery hook from React Query (https://www.npmjs.com/package/@tanstack/react-query).
@@ -13,13 +14,13 @@ import { useTranslation } from 'react-i18next';
 export function useGetApplication(id) {
   const { t } = useTranslation();
   return useQuery({
-    queryKey: ['application'],
+    queryKey: ['applications', id],
     queryFn: () => getApplication(id),
     onError: (error) => {
       if (error?.response?.status === 403) {
-        error.message = t('Errors.LackingPermission');
+        toast.error(t('Errors.LackingPermission'));
       } else {
-        error.message = t('Errors.ServerError');
+        toast.error(t('Errors.ServerError'));
       }
     },
     refetchOnWindowFocus: false,
