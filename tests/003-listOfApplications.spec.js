@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   const applicationsLink = await page.waitForSelector(
     'a[href="/applications"]',
   );
-  await page.waitForTimeout(3000);
+  // await page.waitForTimeout(3000);
   await applicationsLink.click();
 });
 

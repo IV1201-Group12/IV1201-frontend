@@ -6,14 +6,14 @@ test.beforeEach(async ({ page }) => {
   await page.fill('input[id=password-input]', 'admin');
   await page.click('button[id=button-input]');
   await page.waitForSelector('a[href="/applications"]');
-  await page.waitForTimeout(3000);
+  // await page.waitForTimeout(3000);
   await page.goto('/applications/1');
 });
 
 test('displays all information correct', async ({ page }) => {
   await page.waitForSelector('#save');
   const h1Elements = await page.$$('h1');
-  await page.waitForTimeout(3000);
+  // await page.waitForTimeout(3000);
   const currentValue = await page.$eval('#status', (el) => el.value);
   expect(await h1Elements[0].textContent()).toBe('First name: test');
   expect(await h1Elements[1].textContent()).toBe('Last name: lastname');
@@ -52,7 +52,7 @@ test('changing the status while it is concurrently changed by someone else displ
   await newPage.fill('input[id=password-input]', 'admin');
   await newPage.click('button[id=button-input]');
   await newPage.waitForSelector('a[href="/applications"]');
-  await newPage.waitForTimeout(500);
+  // await newPage.waitForTimeout(500);
   await newPage.goto('/applications/1');
   const saveButtonTwo = await newPage.waitForSelector('#save');
   const selectTwo = await newPage.waitForSelector('#status');
